@@ -1,0 +1,71 @@
+import React from "react";
+import signupImage from "../assets/signup_page.png";
+import { Link } from "react-router-dom";
+
+const Signup = () => {
+  return (
+    <div className="min-h-screen flex flex-col items-center gap-20 bg-Secondary">
+      <div className="w-full h-16 flex justify-between px-6 items-center font-semibold text-PrimaryText text-xs">
+        <div className="text-lg md:text-2xl">EduQuery AI</div>
+        <div className="flex gap-8">
+          <Link to={"/login"} className="cursor-pointer">LOG IN</Link>
+          <div className="relative">
+            <span className="relative z-10">SIGN UP</span>
+            <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-Quaternary rounded-md"></span>
+          </div>
+        </div>
+      </div>
+      <div className="container mx-10 w-full max-w-xs md:max-w-3xl  lg:max-w-4xl xl:max-w-6xl bg-Primary text-TertiaryText rounded-4xl border-[7px] flex flex-col md:flex-row md:justify-center md:gap-15 p-4">
+        <div className="flex justify-center items-end md:items-center">
+          <img src={signupImage} alt="image" className="w-[40vw] h-auto object-contain" />
+        </div>
+        <div className="w-full md:w-[70%] text-PrimaryText pt-0 -mt-3 md:mt-0 md:pt-6 flex flex-col gap-3 md:gap-6">
+            <div className="md:flex xs:text-2xl sm:text-3xl text-center md:text-5xl lg:text-6xl font-semibold">
+                REGISTRATION!
+            </div>
+                <form className="md:mt-4">
+                    <div className="flex flex-col gap-2 md:gap-4 text-white">
+                        <div className="text-xs md:text-xl flex flex-col gap-1">
+                        <label className="font-medium">Full Name :-</label>
+                        <div className="w-full bg-white rounded-xs py-2 text-slate-900 font-medium">
+                            <input type="text" className="w-full px-2 outline-none" placeholder="john doe"/>
+                        </div>
+                    </div>
+                    <div className="text-xs md:text-xl flex flex-col gap-1">
+                        <label className="font-medium">E-mail :-</label>
+                        <div className="w-full bg-white rounded-xs py-2 text-slate-900 font-medium">
+                            <input type="email" className="w-full px-2 outline-none" placeholder="johndoe@gmail.com"/>
+                        </div>
+                    </div>
+                    <div className="text-xs md:text-xl flex flex-col gap-1">
+                        <label className="font-medium">Password :-</label>
+                        <div className="w-full bg-white rounded-xs py-2 text-slate-900 font-medium">
+                            <input type="password" className="w-full px-2 outline-none" placeholder="johndoe11"/>
+                        </div>
+                    </div>
+                    <div className="text-xs md:text-xl flex flex-col gap-1">
+                        <label className="font-medium">Confirm Password :-</label>
+                        <div className="w-full bg-white rounded-xs py-2 text-slate-900 font-medium">
+                            <input type="password" className="w-full px-2 outline-none" placeholder="johndoe11"/>
+                        </div>
+                    </div>
+                    <div className="bg-Secondary text-PrimaryText text-center text-md md:text-2xl py-2 font-medium rounded-sm mt-3 md:mt-6 mb-2 md:mb-0 cursor-pointer">
+                        Create an account
+                    </div>
+                    <div className="flex justify-center font-normal gap-1 -mt-2 text-sm lg:text-base">
+                      <p>Already have an account?</p>
+                      <Link to={"/login"} className="text-PrimaryText cursor-pointer font-medium hover:scale-105 transition-all">Log in</Link>
+                    </div>
+                    </div>
+                </form>
+            
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Signup;
+
+
+//sm:w-[45vw] md:w-[25vw] sm:h-[25vh] md:h-[35vw] 

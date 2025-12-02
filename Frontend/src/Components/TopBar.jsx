@@ -2,7 +2,7 @@ import React from 'react'
 
 const TopBar = () => {
   return (
-    <div className='h-12 bg-yellow-500'>
+    <div className='h-12 bg-Secondary'>
       Topbar
     </div>
   )

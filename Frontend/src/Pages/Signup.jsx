@@ -15,7 +15,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-10 w-full max-w-xs md:max-w-3xl  lg:max-w-4xl xl:max-w-6xl bg-Primary text-TertiaryText rounded-4xl border-[7px] flex flex-col md:flex-row md:justify-center md:gap-15 p-4">
+      <div className="container mx-10 w-full max-w-xs md:max-w-3xl  lg:max-w-4xl xl:max-w-6xl bg-Primary text-TertiaryText rounded-4xl border-[7px] flex flex-col md:flex-row md:justify-center md:gap-15 p-4 mb-0 lg:mb-3 xl:mb-0">
         <div className="flex justify-center items-end md:items-center">
           <img src={signupImage} alt="image" className="w-[40vw] h-auto object-contain" />
         </div>

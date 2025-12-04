@@ -59,4 +59,27 @@ body{
   .text-QuinaryText {
     color: var(--color-quinary-text);
   }
+
+  /* Hover colors*/
+  .hover\:bg-Primary:hover {
+    background-color: var(--color-primary);
+  }
+  .hover\:bg-Secondary:hover {
+    background-color: var(--color-secondary);
+  }
+  .hover\:bg-Tertiary:hover {
+    background-color: var(--color-tertiary);
+  }
+  .hover\:bg-Quaternary:hover {
+    background-color: var(--color-quaternary);
+  }
+  .hover\:bg-Quinary:hover {
+    background-color: var(--color-quinary);
+  }
+  .hover\:bg-Senary:hover {
+    background-color: var(--color-senary);
+  }
+  .hover\:bg-Septenary:hover {
+    background-color: var(--color-septenary);
+  }
 }

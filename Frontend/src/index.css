@@ -1,7 +1,5 @@
 @import "tailwindcss";
-body{
-    background: #1C5253;
-}
+
 :root {
   --color-primary: #1C5253;
   --color-secondary: #B6174B;
@@ -10,6 +8,8 @@ body{
   --color-quinary: #FFFFFF;
   --color-senary: #F4C2C2;
   --color-septenary : #1E1E1E;
+  --color-octonary : #303030;
+  
 
 
   --color-primary-text: #F3FFC6;
@@ -41,6 +41,9 @@ body{
   }
   .bg-Septenary {
     background-color: var(--color-septenary);
+  }
+  .bg-Octonary {
+    background-color: var(--color-octonary);
   }
 
   /* Text colors */
@@ -82,4 +85,35 @@ body{
   .hover\:bg-Septenary:hover {
     background-color: var(--color-septenary);
   }
+
+  /* SVG fill colors */
+  .fill-Primary {
+  fill: var(--color-primary);
+  }
+  .fill-Secondary {
+    fill: var(--color-secondary);
+  }
+  .fill-Tertiary {
+    fill: var(--color-tertiary);
+  }
+  .fill-Quaternary {
+    fill: var(--color-quaternary);
+  }
+  .fill-Quinary {
+    fill: var(--color-quinary);
+  }
+  .fill-Senary {
+    fill: var(--color-senary);
+  }
+  .fill-Septenary {
+    fill: var(--color-septenary);
+  }
+
 }
+
+/* in your global CSS file */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+

@@ -1,18 +1,33 @@
 import React from "react";
 import CloseSideBarIcon from "../../assets/icons/archive-up-minimlistic-svgrepo-com.svg?react";
+import Experts from "../../Pages/Experts";
+import History from "../History";
 
-const SideBarPanel = () => {
+const SideBarPanel = ({setPanel, expertName}) => {
+
   return (
     <div className="hidden h-screen w-full md:w-[22vw] bg-Tertiary text-QuinaryText border-s-2 py-3 px-2 md:flex flex-col gap-4">
-      <div className="w-fit ml-auto relative group">
+      <div className="w-fit ml-auto relative group cursor-pointer">
         <button className="rounded-sm cursor-pointer">
-          <CloseSideBarIcon className="h-8 w-8 fill-Secondary" />
-          <div className="w-24 hidden md:flex justify-center font-medium absolute z-10 -right-8 -bottom-11 bg-Primary text-PrimaryText text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">
+          <CloseSideBarIcon onClick={() => setPanel(false)} className="h-8 w-8 fill-Secondary" />
+          <div className="w-28 hidden md:flex justify-center font-medium absolute z-10 right-10 top-1 bg-Primary text-PrimaryText text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">
             Close sidebar
           </div>
         </button>
       </div>
-      SideBarPanel
+      {
+        expertName === "expert" && (
+          <Experts/>
+        )
+        
+      }
+
+      {
+        expertName === "history" && (
+          <History/>
+        )
+      }
+
     </div>
   );
 };

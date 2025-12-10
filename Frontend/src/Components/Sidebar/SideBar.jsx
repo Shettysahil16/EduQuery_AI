@@ -4,18 +4,43 @@ import brainIcon from "../../assets/icons/brain-engine-svgrepo-com.svg";
 import chatIcon from "../../assets/icons/send-svgrepo-com.svg";
 import historyIcon from "../../assets/icons/history-svgrepo-com.svg";
 import settingIcon from "../../assets/icons/settings-svgrepo-com.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-const SideBar = () => {
+const SideBar = ({ expertName, isPanelVisible, setPanel, setPanelDetail }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isExpertActive = location.pathname === "/expert"
+  const isHistoryActive = location.pathname === "/history"
+  
+
+  const handlePanelClick = (pageName) => {
+    if (!isPanelVisible) {
+      navigate(pageName);
+    }
+    setPanelDetail(pageName);
+  };
+
+  const handleRobotClick = () => {
+    setPanel(true);
+    if(expertName === null){
+      setPanelDetail("history")
+    }
+  }
+
   return (
     <div className="fixed z-20 bottom-0 md:relative h-12 md:h-screen w-full md:w-20 bg-Quaternary flex md:flex-col items-center md:py-2 justify-between">
       <div className="h-[30%] flex">
-        <div className="h-12 relative group">
-          <button className="hidden md:flex h-12 w-12 bg-Primary py-2 px-2 rounded-sm cursor-pointer">
+        <div
+          className={`h-12 relative group transition-all duration-300 ease-in-out transform ${isPanelVisible ? "opacity-0 scale-90 pointer-events-none": "opacity-100 scale-100 pointer-events-auto"}`}>
+          <button
+            onClick={handleRobotClick}
+            className="hidden md:flex h-12 w-12 bg-Primary py-2 px-2 rounded-sm cursor-pointer"
+          >
             <img
               src={robotIcon}
               alt="icon"
-              className="w-6 md:w-8 h-auto object-contain "
+              className="w-6 md:w-8 h-auto object-contain"
             />
             <div className="hidden md:flex font-medium absolute -right-30 bottom-3 bg-Primary text-PrimaryText text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">
               Open sidebar
@@ -24,8 +49,8 @@ const SideBar = () => {
         </div>
       </div>
       <div className="relative h-10 w-full flex justify-between px-4 md:h-full md:w-12 md:flex-col md:px-0 md:justify-start md:gap-10">
-        <div className="relative group">
-          <div className="bg-Primary py-2 px-2 rounded-sm cursor-pointer">
+        <div onClick={() => handlePanelClick("expert")} className="relative group">
+          <div className={`${expertName === "expert" && isPanelVisible && "bg-Secondary"} ${isExpertActive && !isPanelVisible ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer`}>
             <img
               src={brainIcon}
               alt="icon"
@@ -50,8 +75,11 @@ const SideBar = () => {
           </button>
         </div>
 
-        <div className="relative group">
-          <button className="bg-Primary py-2 px-2 rounded-sm cursor-pointer">
+        <div
+          onClick={() => handlePanelClick("history")}
+          className="relative group"
+        >
+          <button className={`${expertName === "history" && isPanelVisible && "bg-Secondary"} ${isHistoryActive && !isPanelVisible ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer`}>
             <img
               src={historyIcon}
               alt="icon"

@@ -1,7 +1,7 @@
 import React from "react";
 import CloseSideBarIcon from "../../assets/icons/archive-up-minimlistic-svgrepo-com.svg?react";
-import Experts from "../../Pages/Experts";
 import History from "../History";
+import ExpertCard from "../ExpertCard/ExpertCard";
 
 const SideBarPanel = ({setPanel, expertName}) => {
 
@@ -17,7 +17,7 @@ const SideBarPanel = ({setPanel, expertName}) => {
       </div>
       {
         expertName === "expert" && (
-          <Experts/>
+          <ExpertCard/>
         )
         
       }

@@ -1,5 +1,5 @@
 import React from "react";
-import CloseSideBarIcon from "../../assets/icons/archive-up-minimlistic-svgrepo-com.svg?react";
+import CloseSideBarIcon from "../../assets/icons/close_sidebarpanel_icon.svg?react";
 import History from "../History";
 import ExpertCard from "../ExpertCard/ExpertCard";
 

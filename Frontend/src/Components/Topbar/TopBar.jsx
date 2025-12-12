@@ -1,11 +1,28 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import MenuIcon from "../../assets/icons/menu_icon.svg?react";
+import MobileSideBar from "../MobileSideBar";
 const TopBar = () => {
+  const [isSideBarVisible, setIsSideBarVisible] = useState(false);
   return (
-    <div className='h-12 w-full bg-Secondary px-1 justify-center md:justify-start md:px-2 flex items-center text-3xl font-semibold text-PrimaryText'>
-      EduQuery AI
-    </div>
-  )
-}
+    <div className="h-12 w-full bg-Secondary px-1 md:px-2 flex gap-2 items-center text-3xl font-semibold text-PrimaryText">
+      <div>
+        <MenuIcon
+          onClick={() => setIsSideBarVisible(true)}
+          className="h-9 w-10 md:hidden"
+        />
+      </div>
 
-export default TopBar
+      <div>EduQuery AI</div>
+
+      <div
+        className={`flex md:hidden fixed inset-0 overflow-hidden transition-all duration-300 ease-in-out ${
+          isSideBarVisible ? "w-[50%]" : "w-0"
+        }`}
+      >
+        <MobileSideBar closeSidebar={setIsSideBarVisible} />
+      </div>
+    </div>
+  );
+};
+
+export default TopBar;

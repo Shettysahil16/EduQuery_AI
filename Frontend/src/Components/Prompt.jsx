@@ -1,5 +1,5 @@
 import React from "react";
-import SendIcon from "../assets/icons/send.svg?react";
+import SendIcon from "../assets/icons/message_send_icon.svg?react";
 
 const Prompt = () => {
   return (

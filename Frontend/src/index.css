@@ -111,9 +111,35 @@
 
 }
 
-/* in your global CSS file */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Scrollbar Container */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 12px;
 }
 
+/* Track */
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
 
+/* Thumb */
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #267276;
+  border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #1f595c;
+}
+
+.scrollbar-custom::-webkit-scrollbar-button:single-button:vertical:decrement {
+  -webkit-appearance: none;
+  height: 10px;             /* this is your TOP padding */
+  background: transparent;
+}
+
+/* PADDING BOTTOM (Spacer button below the track) */
+.scrollbar-custom::-webkit-scrollbar-button:single-button:vertical:increment {
+  -webkit-appearance: none;
+  height: 10px;             /* this is your BOTTOM padding */
+  background: transparent;
+}

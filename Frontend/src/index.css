@@ -109,11 +109,21 @@
     fill: var(--color-septenary);
   }
 
+
+  /* Border colors */
+.border-Primary {
+  border-color: var(--color-primary);
+}
+
+.hover\:border-Primary:hover {
+  border-color: var(--color-primary);
+}
+
 }
 
 /* Scrollbar Container */
 .scrollbar-custom::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 /* Track */

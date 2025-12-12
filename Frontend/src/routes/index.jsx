@@ -4,10 +4,10 @@ import App from "../App";
 import GetStarted from "../Pages/GetStarted";
 import Signup from "../Pages/Signup";
 import Login from "../Pages/Login";
-import Experts from "../Pages/Experts";
+import Experts from "../Pages/ExpertsPage/Experts";
 //import Right from "../Right/Right";
 import MainContent from "../Components/MainContent/MainContent";
-import History from "../Components/History";
+import History from "../Pages/ExpertsPage/Experts";
 //import Dashboard from "../Components/Dashboard";
 import Layout from "../layout/Layout";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import CloseSideBarIcon from "../../assets/icons/close_sidebarpanel_icon.svg?react";
-import History from "../History";
+import History from "../HistoryCard/HistoryCard";
 import ExpertCard from "../ExpertCard/ExpertCard";
 
 const SideBarPanel = ({setPanel, expertName}) => {

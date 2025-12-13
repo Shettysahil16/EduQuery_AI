@@ -121,19 +121,19 @@
 
 }
 
-/* Scrollbar Container */
+/* Scrollbar width */
 .scrollbar-custom::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
-/* Track */
+/* Track (hidden background) */
 .scrollbar-custom::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* Thumb */
+/* Scrollbar thumb */
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background: #267276;
+  background: #267276; 
   border-radius: 10px;
 }
 
@@ -141,15 +141,19 @@
   background: #1f595c;
 }
 
+/* ---- TOP PADDING (fake up arrow space) ---- */
 .scrollbar-custom::-webkit-scrollbar-button:single-button:vertical:decrement {
-  -webkit-appearance: none;
-  height: 10px;             /* this is your TOP padding */
+  display: block;
+  height: 12px;     /* top space */
   background: transparent;
+  border: none;
 }
 
-/* PADDING BOTTOM (Spacer button below the track) */
+/* ---- BOTTOM PADDING (fake down arrow space) ---- */
 .scrollbar-custom::-webkit-scrollbar-button:single-button:vertical:increment {
-  -webkit-appearance: none;
-  height: 10px;             /* this is your BOTTOM padding */
+  display: block;
+  height: 12px;     /* bottom space */
   background: transparent;
+  border: none;
 }
+

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MenuIcon from "../../assets/icons/menu_icon.svg?react";
 import MobileSideBar from "../MobileSideBar";
+import { Link } from "react-router-dom";
 const TopBar = () => {
   const [isSideBarVisible, setIsSideBarVisible] = useState(false);
   return (
@@ -12,10 +13,10 @@ const TopBar = () => {
         />
       </div>
 
-      <div>EduQuery AI</div>
+      <Link to={"/"}>EduQuery AI</Link>
 
       <div
-        className={`flex md:hidden fixed inset-0 overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`flex md:hidden fixed inset-0 z-50 overflow-hidden transition-all duration-300 ease-in-out ${
           isSideBarVisible ? "w-[50%]" : "w-0"
         }`}
       >

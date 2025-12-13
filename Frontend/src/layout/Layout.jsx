@@ -19,7 +19,7 @@ export default function Layout() {
         <div
           className={`hidden md:block overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "w-[22vw]" : "w-0"}`}
         >
-          <SideBarPanel expertName={panelDetail}/>
+          <SideBarPanel expertName={panelDetail} setPanelDetail={setPanelDetail}/>
         </div>
       </div>
 

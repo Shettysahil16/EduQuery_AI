@@ -29,11 +29,11 @@ const SideBar = ({ expertName, setPanelDetail }) => {
 
   const handleRobotClick = () => {
     openSidebar();
-    console.log("before expertName", expertName);
+    //console.log("before expertName", expertName);
     
     if(expertName === null){
       setPanelDetail("history")
-      console.log("after expertName", expertName);
+      //console.log("after expertName", expertName);
     }
   }
 
@@ -55,7 +55,7 @@ const SideBar = ({ expertName, setPanelDetail }) => {
       </div>
       <div className="relative h-10 w-full flex justify-between px-4 md:h-full md:w-12 md:flex-col md:px-0 md:justify-start md:gap-10">
         <div onClick={() => handlePanelClick("expert")} className="relative group">
-          <div className={`${expertName === "expert" && isOpen && !isChatActive && "bg-Secondary"} ${isExpertActive && !isOpen ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer`}>
+          <div className={`${(expertName === "expert" && isOpen || !isOpen && isExpertActive) ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer`}>
             <BrainIcon className="w-6 md:w-8 h-auto fill-white"/>
             <div className="font-medium hidden md:flex absolute -right-30 bottom-3 z-10 bg-Primary text-PrimaryText text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">
               Subject Tutor
@@ -63,20 +63,17 @@ const SideBar = ({ expertName, setPanelDetail }) => {
           </div>
         </div>
 
-        <NavLink to={"/chats"} onClick={() => handlePanelClick("chats")} className={({ isActive }) => `${isActive ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer relative group`}>
-          <div>
+        <div onClick={() => handlePanelClick("chats")}>
+          <div className={`${(expertName === "chats" && isOpen || !isOpen && isChatActive) ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer relative group`}>
             <ChatIcon className="w-6 md:w-8 h-auto stroke-white"/>
             <div className="hidden md:flex font-medium absolute -right-18 bottom-3 z-10 bg-Primary text-PrimaryText text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">
               Chats
             </div>
           </div>
-        </NavLink>
+        </div>
 
-        <div
-          onClick={() => handlePanelClick("history")}
-          className="relative group"
-        >
-          <button className={`${expertName === "history" && isOpen && !isChatActive && "bg-Secondary"} ${isHistoryActive && !isOpen ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer`}>
+        <div onClick={() => handlePanelClick("history")} className="relative group">
+          <button className={`${(expertName === "history" && isOpen || !isOpen && isHistoryActive) ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer`}>
             <HistoryIcon className="w-6 md:w-8 h-auto fill-white"/>
             <div className="hidden md:flex font-medium absolute -right-22 bottom-3 z-10 bg-Primary text-PrimaryText text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">
               History

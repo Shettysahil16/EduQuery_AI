@@ -3,7 +3,7 @@ import CloseSideBarIcon from "../../assets/icons/close_sidebarpanel_icon.svg?rea
 import History from "../HistoryCard/HistoryCard";
 import ExpertCard from "../ExpertCard/ExpertCard";
 import { useLocation } from "react-router-dom";
-import ChatUsers from "../ChatUsers/ChatUsers";
+import ChatUsers from "../ChatSection/ChatUsers/ChatUsers";
 import { useSideBarPanel } from "../../Context/SideBarPanel/useSideBarPanel";
 
 const SideBarPanel = ({ expertName, setPanelDetail }) => {
@@ -29,8 +29,16 @@ const SideBarPanel = ({ expertName, setPanelDetail }) => {
     if (location.pathname === "/") {
       setPanelDetail("history");
     }
-  },[location.pathname])
-  
+
+    if (isExpertActive) {
+      setPanelDetail("expert");
+    }
+
+    if (isChatActive) {
+      setPanelDetail("chats");
+    }
+  },[isExpertActive, isChatActive, setPanelDetail, location.pathname])
+
   return (
     <div className="hidden h-screen w-full md:w-[22vw] bg-Tertiary text-QuinaryText border-s-2 py-3 px-2 md:flex flex-col gap-4">
       <div className="w-fit ml-auto relative group cursor-pointer">

@@ -1,12 +1,11 @@
 import React from "react";
-import SendIcon from "../assets/icons/message_send_icon.svg?react";
+import SendIcon from '../assets/icons/message_send_icon.svg?react'
 
 const Prompt = () => {
   return (
-    <div className="absolute bottom-0 left-8 right-0 h-24 w-full flex justify-center items-center text-white">
-      <div className="bg-Octonary h-16 w-full max-w-[57%] mx-auto rounded-full text-slate-300">
-
-      </div>
+    <div className="h-14 bg-Octonary w-full flex justify-center items-center text-white rounded-full px-4">
+      <input type="text" className="h-full w-full rounded-full outline-none px-2" placeholder="Ask anything" />
+      <SendIcon className="w-8 h-auto cursor-pointer fill-Quinary"/>
     </div>
   );
 };

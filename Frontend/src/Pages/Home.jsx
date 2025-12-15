@@ -1,43 +1,20 @@
 import React from "react";
+import Prompt from "../Components/Prompt";
 
 const Home = () => {
   return (
-    <div className="bg-Septenary h-full w-full p-4">
-      <h1 className="text-2xl text-white font-semibold">Welcome 👋</h1>
-
-      <p className="mt-2 text-gray-300">
-        This is your dashboard home page.
-      </p>
-    </div>
-  );
-};
-
-export default Home;
-
-
-/*
-
-import React from "react";
-import SideBar from "../Components/Sidebar";
-import SideBarPanel from "../Components/SidebarPanel";
-import TopBar from "../Components/Topbar";
-import MainContent from "../Components/MainContent";
-import Left from "../Left/Left";
-import Right from "../Right/Right";
-
-const Home = () => {
-  return (
-    <div className="h-screen flex w-full flex-col-reverse md:flex-row">
-      <div className="flex">
-        <Left/>
-      </div>
-      <div className="h-screen md:h-screen w-full flex flex-col justify-between">
-       <Right/>
+    <div className="bg-Septenary h-full w-full p-4 text-white">
+      <div className="h-full w-full md:max-w-[60%] mx-auto flex flex-col items-center">
+        <div className="w-full h-full md:min-h-[40vh] flex justify-center items-center text-2xl md:text-3xl lg:text-5xl py-2">
+          What are you working on?
+        </div>
+        <div className="w-full">
+          <Prompt />
+        </div>
+        <div className="text-xs mt-1 text-center">EduQuery AI can make mistakes. Check important info</div>
       </div>
     </div>
   );
 };
 
 export default Home;
-
-*/

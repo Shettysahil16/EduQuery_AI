@@ -9,6 +9,7 @@
   --color-senary: #F4C2C2;
   --color-septenary : #1E1E1E;
   --color-octonary : #303030;
+  --color-nonary: #048e91;
   
 
 
@@ -44,6 +45,9 @@
   }
   .bg-Octonary {
     background-color: var(--color-octonary);
+  }
+  .bg-Nonary {
+    background-color: var(--color-nonary);
   }
 
   /* Text colors */
@@ -113,6 +117,20 @@
   /* Border colors */
 .border-Primary {
   border-color: var(--color-primary);
+}
+
+.border-Secondary {
+  border-color: var(--color-secondary);
+}
+
+.border-Tertiary {
+  border-color: var(--color-tertiary);
+}
+.border-Quaternary {
+  border-color: var(--color-nonary);
+}
+.border-Quinary {
+  border-color: var(--color-quaternary);
 }
 
 .hover\:border-Primary:hover {

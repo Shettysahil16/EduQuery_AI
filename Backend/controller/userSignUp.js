@@ -48,10 +48,8 @@ const userSignUpController = async (req, res) => {
 
     //saved the user details of newUser in database
     const savedUser = await newUser.save();
-    const { password: _, ...userWithoutPassword } = savedUser.toObject();
     return res.status(201).json({
       message: "user created successfully",
-      data: userWithoutPassword,
       success: true,
       error: false,
     });

@@ -10,6 +10,7 @@
   --color-septenary : #1E1E1E;
   --color-octonary : #303030;
   --color-nonary: #048e91;
+  --color-denary: #960c3a;
   
 
 
@@ -48,6 +49,9 @@
   }
   .bg-Nonary {
     background-color: var(--color-nonary);
+  }
+  .bg-Denary {
+    background-color: var(--color-denary);
   }
 
   /* Text colors */

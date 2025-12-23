@@ -25,7 +25,7 @@ const userLoginController = async(req, res) => {
     const isPasswordCorrect = await bcrypt.compare(password, user.password)
     if(!isPasswordCorrect){
       return res.status(422).json({
-        message: "incorrect password",
+        message: "invalid credentials",
         success: false,
         error: true,
       });
@@ -44,7 +44,7 @@ const userLoginController = async(req, res) => {
 
     const tokenOption = {
       httpOnly: true,
-      secure: true,
+      secure: false,
     };
 
     return res.cookie("token", jwtToken, tokenOption).status(200).json({

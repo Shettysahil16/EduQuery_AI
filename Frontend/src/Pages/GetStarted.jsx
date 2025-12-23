@@ -55,7 +55,7 @@ const GetStarted = () => {
           })}
         </div>
         <div className="flex flex-col items-center">
-          <Link to={"/"}>
+          <Link to={"/login"}>
           <motion.div
           className="w-fit bg-Tertiary text-SecondaryText text-2xl md:text-4xl font-semibold px-8 md:px-12 text-center pb-3 pt-2 rounded-xl cursor-pointer"
           initial={{ opacity: 0, y: 20 }}

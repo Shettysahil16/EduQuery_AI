@@ -14,4 +14,4 @@ export const SideBarPanelProvider = ({ children }) => {
   );
 };
 
-export default SideBarPanelContext; // export the context if needed
+export default SideBarPanelContext; 

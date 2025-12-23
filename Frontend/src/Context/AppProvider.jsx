@@ -1,9 +1,10 @@
-import {SideBarPanelProvider} from "./SideBarPanel/SideBarPanelProvider";
+import { SideBarPanelProvider } from "./SideBarPanel/SideBarPanelProvider";
+import { AuthProvider } from "./Auth/AuthProvider";
 
 export const AppProvider = ({ children }) => {
   return (
-        <SideBarPanelProvider>
-          {children}
-        </SideBarPanelProvider>
+    <AuthProvider>
+      <SideBarPanelProvider>{children}</SideBarPanelProvider>
+    </AuthProvider>
   );
 };

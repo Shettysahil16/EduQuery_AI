@@ -143,7 +143,7 @@ const Login = () => {
                 {loading ? (
                   <LoginLoader className="h-auto w-12" />
                 ) : (
-                  <p>Login</p>
+                  <p>Loginn</p>
                 )}
               </div>
               <div className="flex justify-center font-medium gap-1 md:gap-2 text-[10px] lg:text-base mt-4 pb-4">

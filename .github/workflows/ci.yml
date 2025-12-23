@@ -8,6 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      PORT: ${{ secrets.PORT }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      JWT_SECRET_TOKEN: ${{ secrets.JWT_SECRET_TOKEN }}
+      FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+
     steps:
 
       # Step 1: Checkout code

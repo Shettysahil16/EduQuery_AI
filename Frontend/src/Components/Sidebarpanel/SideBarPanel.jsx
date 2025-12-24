@@ -40,7 +40,7 @@ const SideBarPanel = ({ expertName, setPanelDetail }) => {
   },[isExpertActive, isChatActive, setPanelDetail, location.pathname])
 
   return (
-    <div className="hidden h-screen w-full md:w-[22vw] bg-Tertiary text-QuinaryText border-s-2 py-3 px-2 md:flex flex-col gap-4">
+    <div className="hidden h-screen w-full md:w-[22vw] bg-Senary text-QuinaryText border-s-2 py-3 px-2 md:flex flex-col gap-4">
       <div className="w-fit ml-auto relative group cursor-pointer">
         <button className="rounded-sm cursor-pointer">
           <CloseSideBarIcon

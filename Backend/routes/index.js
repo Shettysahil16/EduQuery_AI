@@ -3,12 +3,14 @@ import userSignUpController from '../controller/userSignUp.js';
 import userLoginController from '../controller/userLogin.js';
 import authUserDetailsController from '../controller/authUserDetails.js';
 import { authToken } from '../middleware/authToken.js';
+import fetchChatFriendsController from '../controller/chatFriends.js';
 
 
 const router = express.Router();
 
 router.post("/signup", userSignUpController)
 router.post("/login", userLoginController)
-router.get("/user-details", authToken ,authUserDetailsController)
+router.get("/user-details", authToken , authUserDetailsController)
+router.get("/chat-friends", authToken , fetchChatFriendsController)
 
 export default router

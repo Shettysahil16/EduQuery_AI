@@ -13,6 +13,10 @@ const summaryApi = {
         url : `${backendDomain}/api/user-details`,
         method : "get",
     },
+    chatFriends : {
+        url : `${backendDomain}/api/chat-friends`,
+        method : "get",
+    },
 }
 
 export default summaryApi;

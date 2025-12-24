@@ -93,6 +93,15 @@
   .hover\:bg-Septenary:hover {
     background-color: var(--color-septenary);
   }
+  .hover\:bg-Octonary:hover {
+    background-color: var(--color-octonary);
+  }
+  .hover\:bg-Nonary:hover {
+    background-color: var(--color-nonary);
+  }
+  .hover\:bg-Denary:hover {
+    background-color: var(--color-denary);
+  }
 
   /* SVG fill colors */
   .fill-Primary {

@@ -6,7 +6,7 @@ const HistoryCard = () => {
   const cards = Array.from({ length: 20 });
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4 px-2'>
       <div className='border-2 rounded-md py-1 border-Primary text-center cursor-pointer mt-5 font-medium group text-2xl hover:bg-Primary hover:text-white transition-all'>
         <div className=''>New Chat</div>
       </div>

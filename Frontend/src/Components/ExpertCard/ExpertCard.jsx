@@ -6,7 +6,7 @@ const ExpertCard = () => {
   const card = Array.from({length : 10});
 
   return (
-    <div>
+    <div className='px-2'>
       <div className='text-5xl font-medium'>
         Experts
       </div>

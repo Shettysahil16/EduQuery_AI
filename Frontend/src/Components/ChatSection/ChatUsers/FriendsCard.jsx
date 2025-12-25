@@ -1,6 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectedConversation } from "../../../store/conversationSlice";
 
 const FriendsCard = ({ loading, friend }) => {
+  const conversationId = useSelector(selectedConversation)
+  const isSelected = conversationId?._id === friend?._id
+  
   return (
     <>
       {loading ? (
@@ -16,17 +21,17 @@ const FriendsCard = ({ loading, friend }) => {
           </div>
         </div>
       ) : (
-        <div className="h-38 shrink-0 w-full flex gap-4 rounded p-2 transition-all duration-100 group hover:bg-Nonary cursor-pointer">
+        <div className={`h-38 shrink-0 w-full flex md:gap-2 xl:gap-4 rounded p-2 transition-all duration-100 group hover:bg-Nonary cursor-pointer ${isSelected ? "bg-Nonary" : ""}`}>
           <div className="flex items-center justify-center">
-            <div className="h-26 w-25 rounded-full flex justify-center items-center overflow-hidden border-3 border-Primary group-hover:border-white">
-              <p className="text-4xl font-semibold text-QuinaryText group-hover:text-white capitalize">
+            <div className={`h-10 w-8 md:h-13 md:w-12 lg:h-20 lg:w-19 xl:h-26 xl:w-25 rounded-full flex justify-center items-center overflow-hidden border-3 group-hover:border-white ${isSelected ? "border-white" : "border-Primary"}`}>
+              <p className={`md:text-2xl lg:text-3xl xl:text-4xl font-semibold group-hover:text-white capitalize ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>
                 {friend?.fullName?.charAt(0)}
               </p>
             </div>
           </div>
-          <div className="flex flex-col text-QuinaryText group-hover:text-white mt-6">
-            <p className="text-2xl font-medium">{friend?.fullName}</p>
-            <p className="text-base">online</p>
+          <div className={`flex flex-col md:mt-11 xl:mt-6 ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>
+            <p className={`md:text-md lg:text-lg xl:text-2xl font-medium group-hover:text-white ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>{friend?.fullName}</p>
+            <p className={`md:text-[12px] lg:text-[14px] group-hover:text-white ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>online</p>
           </div>
         </div>
       )}

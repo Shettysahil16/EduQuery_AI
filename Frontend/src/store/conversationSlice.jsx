@@ -11,10 +11,14 @@ export const conversationSlice = createSlice({
         setSelectedConversation : (state, action) => {
             state.selectedConversation = action.payload
         },
+
+        clearSelectedConversation : (state) => {
+            state.selectedConversation = null
+        },
     },
 });
 
-export const { setSelectedConversation } = conversationSlice.actions;
+export const { setSelectedConversation, clearSelectedConversation } = conversationSlice.actions;
 
 export const selectedConversation = (state) => state.conversation.selectedConversation
 

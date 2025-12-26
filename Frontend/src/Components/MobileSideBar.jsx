@@ -5,6 +5,8 @@ import BrainIcon from "../assets/icons/expert_icon.svg?react";
 import HistoryIcon from "../assets/icons/history_icon.svg?react";
 import SettingIcon from "../assets/icons/settings_icon.svg?react";
 import LogoutIcon from "../assets/icons/logout_icon.svg?react";
+import ChatIcon from "../assets/icons/chat_section_icon.svg?react"
+import { Link } from "react-router-dom";
 
 const MobileSideBar = ({ closeSidebar }) => {
   return (
@@ -31,6 +33,13 @@ const MobileSideBar = ({ closeSidebar }) => {
             </div>
             <p>Experts</p>
         </div>
+
+        <Link to={"/chats"} className="border-b-2 py-6 px-2 flex gap-4 items-center">
+            <div className="h-9 w-9 bg-Primary flex items-center justify-center rounded-full p-2">
+              <ChatIcon className="h-6 w-6 stroke-white"/>
+            </div>
+            <p>Chat</p>
+        </Link>
 
         <div className="border-b-2 py-6 px-2 flex gap-4 items-center">
             <div className="h-9 w-9 bg-Primary flex items-center justify-center rounded-full p-2">

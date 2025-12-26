@@ -3,7 +3,7 @@ import EmptyChatIcon from "../../assets/icons/empty_chat.svg?react";
 
 const EmptyChat = () => {
   return (
-    <div className="h-full bg-Septenary text-slate-400 flex justify-center items-center">
+    <div className="h-full w-full bg-Septenary text-slate-400 flex justify-center items-center">
       <div className="flex flex-col items-center gap-2">
         <div>
           <EmptyChatIcon className="h-auto w-20" />

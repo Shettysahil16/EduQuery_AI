@@ -9,28 +9,28 @@ const FriendsCard = ({ loading, friend }) => {
   return (
     <>
       {loading ? (
-        <div className="bg-slate-200 shrink-0 h-38 w-full flex gap-4 rounded p-2 animate-pulse">
+        <div className="bg-slate-200 shrink-0 h-32 md:h-38 w-full flex gap-4 rounded p-2 animate-pulse">
           <div className="flex items-center justify-center">
-            <div className="h-26 w-25 rounded-full flex justify-center items-center overflow-hidden bg-slate-300">
+            <div className="h-22 w-21 md:h-26 md:w-25 rounded-full flex justify-center items-center overflow-hidden bg-slate-300">
               
             </div>
           </div>
           <div className="w-full flex flex-col gap-4 text-QuinaryText group-hover:text-white mt-6">
-            <p className="bg-slate-300 py-3 w-full rounded-full"></p>
-            <p className="bg-slate-300 py-2 w-20 rounded-full"></p>
+            <p className="bg-slate-300 py-2 md:py-3 w-full rounded-full"></p>
+            <p className="bg-slate-300 py-2 md:py-2 w-20 rounded-full"></p>
           </div>
         </div>
       ) : (
-        <div className={`h-38 shrink-0 w-full flex md:gap-2 xl:gap-4 rounded p-2 transition-all duration-100 group hover:bg-Nonary cursor-pointer ${isSelected ? "bg-Nonary" : ""}`}>
+        <div className={`h-32 md:h-38 shrink-0 w-full flex gap-2 md:gap-2 xl:gap-4 rounded p-2 transition-all duration-100 group hover:bg-Nonary cursor-pointer ${isSelected ? "bg-Nonary" : ""}`}>
           <div className="flex items-center justify-center">
-            <div className={`h-10 w-8 md:h-13 md:w-12 lg:h-20 lg:w-19 xl:h-26 xl:w-25 rounded-full flex justify-center items-center overflow-hidden border-3 group-hover:border-white ${isSelected ? "border-white" : "border-Primary"}`}>
-              <p className={`md:text-2xl lg:text-3xl xl:text-4xl font-semibold group-hover:text-white capitalize ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>
+            <div className={`h-22 w-21 md:h-13 md:w-12 lg:h-20 lg:w-19 xl:h-26 xl:w-25 rounded-full flex justify-center items-center overflow-hidden border-3 group-hover:border-white ${isSelected ? "border-white" : "border-Primary"}`}>
+              <p className={`text-3xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold group-hover:text-white capitalize ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>
                 {friend?.fullName?.charAt(0)}
               </p>
             </div>
           </div>
-          <div className={`flex flex-col md:mt-11 xl:mt-6 ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>
-            <p className={`md:text-md lg:text-lg xl:text-2xl font-medium group-hover:text-white ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>{friend?.fullName}</p>
+          <div className={`min-w-0 flex flex-col mt-5 md:mt-11 xl:mt-6 ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>
+            <p className={`w-full text-xl md:text-xl lg:text-lg xl:text-2xl font-medium truncate group-hover:text-white ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>{friend?.fullName}</p>
             <p className={`md:text-[12px] lg:text-[14px] group-hover:text-white ${isSelected ? "text-QuaternaryText" : "text-QuinaryText"}`}>online</p>
           </div>
         </div>

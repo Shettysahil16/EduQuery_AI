@@ -5,12 +5,23 @@ import ChatCard from "../../Components/ChatSection/ChatCard";
 import { useSelector } from "react-redux";
 import { selectedConversation } from "../../store/conversationSlice";
 import EmptyChat from "../../Components/ChatSection/EmptyChat";
+import MobileChatSection from "../../Components/MobileChatSection/ChatUsers";
 
 const ChatPage = () => {
   const selectedFriend = useSelector(selectedConversation);
   return (
     <>
-      {selectedFriend === null && <EmptyChat />}
+      {selectedFriend === null && (
+        <>
+          <div className="hidden md:flex h-full w-full">
+            <EmptyChat/>
+          </div>
+
+          <div className="flex h-full  min-h-0 w-full md:hidden">
+            <MobileChatSection/>
+          </div>
+        </>
+      )}
 
       {selectedFriend !== null && (
         <div className="bg-Septenary h-screen flex flex-col overflow-hidden text-white">

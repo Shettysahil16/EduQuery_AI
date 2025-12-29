@@ -17,6 +17,14 @@ const summaryApi = {
         url : `${backendDomain}/api/chat-friends`,
         method : "get",
     },
+    sendMessage : {
+        url : `${backendDomain}/api/send-message`,
+        method : "post",
+    },
+    getMessage : {
+        url : `${backendDomain}/api/get-messages`,
+        method : "get",
+    },
 }
 
 export default summaryApi;

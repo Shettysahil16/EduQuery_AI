@@ -2,7 +2,8 @@ import userModel from "../models/userModel.js";
 
 const fetchChatFriendsController = async (req, res) => {
   try {
-    const friends = await userModel.find().select("-password");
+    const loggedUserId = req.userId;
+    const friends = await userModel.find({_id : {$ne : loggedUserId}}).select("-password");
 
     return res.status(200).json({
         data : friends,

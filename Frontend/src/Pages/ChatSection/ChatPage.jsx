@@ -79,18 +79,15 @@ const ChatPage = () => {
         <div className="bg-Septenary h-screen flex flex-col overflow-hidden text-white">
           <TopUserInfo />
 
-          <div className="flex-1 overflow-y-auto px-4 py-4 scrollbar-custom">
+          <div className="flex-1 overflow-y-auto px-4 py-4 scrollbar-custom relative">
             <div
-              className={`min-h-full flex flex-col gap-4 ${
-                !messages || messages.length === 0
-                  ? "items-center justify-center"
-                  : "justify-start"
-              }`}
-            >
+              className="min-h-full flex flex-col gap-4">
               {loading ? (
-                <MessageLoader/>
-              ) : !messages || messages.length === 0 ? (
-                <div className="h-full w-full flex flex-col items-center justify-center text-gray-400">
+                <div className="absolute inset-0 flex justify-center items-center">
+                  <MessageLoader/>
+                </div>
+              ) : (!messages || messages.length === 0) ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
                   <NoChatIcon className='h-auto w-50'/>
                   <p className="text-xl -mt-5">No Conversation yet</p>
                 </div>

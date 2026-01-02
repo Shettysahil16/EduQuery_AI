@@ -1,10 +1,13 @@
 import { SideBarPanelProvider } from "./SideBarPanel/SideBarPanelProvider";
 import { AuthProvider } from "./Auth/AuthProvider";
+import { SocketProvider } from "./Socket/SocketProvider";
 
 export const AppProvider = ({ children }) => {
   return (
     <AuthProvider>
-      <SideBarPanelProvider>{children}</SideBarPanelProvider>
+      <SocketProvider>
+        <SideBarPanelProvider>{children}</SideBarPanelProvider>
+      </SocketProvider>
     </AuthProvider>
   );
 };

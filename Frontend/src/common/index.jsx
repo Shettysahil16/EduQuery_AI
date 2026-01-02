@@ -25,6 +25,10 @@ const summaryApi = {
         url : `${backendDomain}/api/get-messages`,
         method : "get",
     },
+    userLogout : {
+        url : `${backendDomain}/api/user-logout`,
+        method : "get",
+    },
 }
 
 export default summaryApi;

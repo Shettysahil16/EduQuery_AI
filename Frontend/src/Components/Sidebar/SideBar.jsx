@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import RobotIcon from "../../assets/icons/eduquery_icon.svg?react";
 import BrainIcon from "../../assets/icons/expert_icon.svg?react";
 import ChatIcon from "../../assets/icons/chat_section_icon.svg?react";
@@ -7,6 +7,7 @@ import SettingIcon from "../../assets/icons/settings_icon.svg?react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 //context imports
 import { useSideBarPanel } from '../../Context/SideBarPanel/useSideBarPanel';
+import Logout from "../Logout";
 
 const SideBar = ({ expertName, setPanelDetail }) => {
 
@@ -18,6 +19,8 @@ const SideBar = ({ expertName, setPanelDetail }) => {
   const isExpertActive = location.pathname === "/expert"
   const isHistoryActive = location.pathname === "/history"
   const isChatActive = location.pathname === "/chats"
+
+  const [isLogoutVisible, setIsLogoutVisible] = useState(false);
   
 
   const handlePanelClick = (pageName) => {
@@ -81,7 +84,7 @@ const SideBar = ({ expertName, setPanelDetail }) => {
           </button>
         </div>
 
-        <div className="relative group md:absolute md:bottom-[25%]">
+        <div className="relative group md:absolute md:bottom-[25%]" onClick={() => setIsLogoutVisible(true)}>
           <div className="bg-Primary py-2 px-2 rounded-sm cursor-pointer">
             <SettingIcon className="w-6 md:w-8 h-auto fill-white"/>
             <div className="font-medium absolute -right-22 bottom-3 z-10 bg-Primary text-PrimaryText text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">
@@ -89,6 +92,11 @@ const SideBar = ({ expertName, setPanelDetail }) => {
             </div>
           </div>
         </div>
+        {
+          isLogoutVisible && (
+            <Logout onClose={() => setIsLogoutVisible(false)}/>
+          )
+        }
       </div>
     </div>
   );

@@ -19,6 +19,7 @@
   --color-tertiary-text: #C3EB78;
   --color-quaternary-text: #FFFFFF;
   --color-quinary-text: #1C5253;
+  --color-senary-text: #1E1E1E;
 }
 
 @layer utilities {
@@ -69,6 +70,9 @@
   }
   .text-QuinaryText {
     color: var(--color-quinary-text);
+  }
+  .text-SenaryText {
+    color: var(--color-senary-text);
   }
 
   /* Hover colors*/

@@ -18,21 +18,21 @@ export const SocketProvider = ({ children }) => {
         },
       });
       socketRef.current = newSocket;
-      
-      newSocket.on('get-online', (users) => {
+
+      newSocket.on("get-online", (users) => {
         setOnlineUsers(users);
-        console.log("online users", onlineUsers);
-        
-      })
+
+        //console.log("online users", onlineUsers);
+      });
 
       //setSocket(newSocket);
 
+      return () => {
+        socketRef.current?.disconnect();
+        socketRef.current = null;
+      };
     }
-    return () => {
-      socketRef.current?.disconnect();
-      socketRef.current = null;
-    }
-  }, [loggedUser]);
+  }, [loggedUser?._id]);
 
   return (
     <SocketContext.Provider value={{ socketRef, onlineUsers }}>

@@ -42,7 +42,7 @@ const Logout = ({ onClose }) => {
   };
 
   return (
-    <div className="bg-slate-400/30 backdrop-blur-xs h-full w-full fixed inset-0 z-10 flex justify-center items-center">
+    <div className="bg-slate-800/30 backdrop-blur-xs h-full w-full fixed inset-0 z-10 flex justify-center items-center">
       <div className="bg-white w-[80%] md:w-3xl mx-auto h-[20%] text-black relative shadow-md rounded text-xl md:text-3xl">
         <div className="h-full">
           <div className="w-fit ml-auto">

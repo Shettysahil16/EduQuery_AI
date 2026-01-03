@@ -14,15 +14,14 @@ const FriendsCard = ({ loading, friend }) => {
   return (
     <>
       {loading ? (
-        <div className="bg-slate-200 shrink-0 h-32 md:h-38 w-full flex gap-4 rounded p-2 animate-pulse">
+        <div className="bg-slate-900 shrink-0 h-32 md:h-38 w-full flex gap-4 rounded p-2 animate-pulse">
           <div className="flex items-center justify-center">
-            <div className="h-22 w-21 md:h-26 md:w-25 rounded-full flex justify-center items-center overflow-hidden bg-slate-300">
-              
+            <div className="h-22 w-21 md:h-26 md:w-25 rounded-full overflow-hidden bg-slate-700">
             </div>
           </div>
-          <div className="w-full flex flex-col gap-4 text-QuinaryText group-hover:text-white mt-6">
-            <p className="bg-slate-300 py-2 md:py-3 w-full rounded-full"></p>
-            <p className="bg-slate-300 py-2 md:py-2 w-20 rounded-full"></p>
+          <div className="w-full flex flex-col gap-4 mt-6">
+            <p className="bg-slate-700 py-2 md:py-3 w-full rounded-full"></p>
+            <p className="bg-slate-700 py-2 md:py-2 w-20 rounded-full"></p>
           </div>
         </div>
       ) : (

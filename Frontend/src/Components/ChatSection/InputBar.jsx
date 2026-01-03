@@ -33,11 +33,11 @@ const InputBar = () => {
       const dataResponse = await response.json();
 
       if(dataResponse.success){
-        console.log("dataResponse", dataResponse?.data?.message);
+        //console.log("dataResponse", dataResponse?.data?.message);
         
         dispatch(addMessage(dataResponse.data))
         setSendMessageData("")
-        console.log("messages", messages);
+        //console.log("messages", messages);
         
       }
 

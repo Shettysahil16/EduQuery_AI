@@ -11,10 +11,12 @@ import { toast } from "react-toastify";
 import summaryApi from "../../common";
 import MessageLoader from "../../assets/loaders/chats_loading.svg?react";
 import NoChatIcon from '../../assets/icons/no_chat.svg?react'
+import useGetSocketMessage from "../../Context/GetSocketMessage/useGetSocketMessage";
 
 const ChatPage = () => {
+  const [conversationId, setConversationId] = useState(null);
   const selectedFriend = useSelector(selectedConversation);
-  const messages = useSelector(selectMessages);
+  
   const [loading, setLoading] = useState(false);
 
   const messagesEndRef = useRef(null);
@@ -36,11 +38,14 @@ const ChatPage = () => {
           },
         }
       );
-
+      //console.log("messages", response);
       const result = await response.json();
+      console.log("messages of result data", result.data);
 
       if (result.success) {
-        //console.log("messages", result.data);
+        //console.log();
+        const convId = result?.data[0]?.conversationId;
+        setConversationId(convId);
         dispatch(setMessages(result.data));
       }
     } catch (error) {
@@ -54,6 +59,10 @@ const ChatPage = () => {
   useEffect(() => {
     fetchMessages();
   }, [selectedFriend]);
+
+  const messages = useSelector(selectMessages(conversationId));
+
+  useGetSocketMessage();
 
   useEffect(() => {
   if (messages.length > 0) {

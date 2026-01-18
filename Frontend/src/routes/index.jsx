@@ -8,6 +8,7 @@ import Experts from "../Pages/ExpertsPage/Experts";
 import History from "../Pages/ExpertsPage/Experts";
 import Layout from "../layout/Layout";
 import ChatPage from "../Pages/ChatSection/ChatPage";
+import ExpertPage from "../Pages/ExpertsPage/ExpertPage";
 
 const router = createBrowserRouter([
   {
@@ -18,9 +19,10 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
           { index: true, element: <Home /> }, // default main content
-          { path: "expert", element: <Experts /> },
           { path: "history", element: <History /> },
           { path: "chats", element: <ChatPage /> },
+          { path: "experts", element: <Experts />},
+          { path: "/experts/:expertName", element: <ExpertPage /> },
         ],
       },
 

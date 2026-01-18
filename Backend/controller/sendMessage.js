@@ -28,22 +28,25 @@ const sendMessageController = async (req, res) => {
       receiverId,
       message,
     });
-    console.log("newMessage", newMessage);
+    //console.log("newMessage", newMessage);
+    
+    if (newMessage) {
+      await newMessage.save();
+      conversation.lastMessage = newMessage._id;
+      await conversation.save();
+    }
 
     const receiverSocketId = getReceiverSocketId(receiverId);
 
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("new-message", {
         ...newMessage.toObject(),
-        senderName : senderUser.fullName
+        senderName : senderUser.fullName,
+        lastMessage : conversation.lastMessage
       });
     }
 
-    if (newMessage) {
-      await newMessage.save();
-      conversation.messages.push(newMessage._id);
-      await conversation.save();
-    }
+    
 
     return res.status(201).json({
       message: "message sent successfully",

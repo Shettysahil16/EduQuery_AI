@@ -10,14 +10,14 @@ const SideBarPanel = ({ expertName, setPanelDetail }) => {
   const location = useLocation();
   const { closeSidebar } = useSideBarPanel();
 
-  const isExpertActive = location.pathname === "/expert";
+  const isExpertActive = location.pathname === "/experts";
   const isChatActive = location.pathname === "/chats";
 
   const handleClosePanel = () => {
     closeSidebar();
     //setPanelDetail(expertName)
     if (isExpertActive) {
-      setPanelDetail("expert");
+      setPanelDetail("experts");
     }
 
     if (isChatActive) {
@@ -31,7 +31,7 @@ const SideBarPanel = ({ expertName, setPanelDetail }) => {
     }
 
     if (isExpertActive) {
-      setPanelDetail("expert");
+      setPanelDetail("experts");
     }
 
     if (isChatActive) {
@@ -52,7 +52,7 @@ const SideBarPanel = ({ expertName, setPanelDetail }) => {
           </div>
         </button>
       </div>
-      {expertName === "expert" && <ExpertCard />}
+      {expertName === "experts" && <ExpertCard />}
 
       {expertName === "history" && <History />}
 

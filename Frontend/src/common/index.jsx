@@ -29,6 +29,11 @@ const summaryApi = {
         url : `${backendDomain}/api/user-logout`,
         method : "get",
     },
+    getConversations : {
+        url : `${backendDomain}/api/get-conversations`,
+        method : "get",
+    },
 }
 
 export default summaryApi;
+

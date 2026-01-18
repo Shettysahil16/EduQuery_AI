@@ -19,9 +19,12 @@ export default function Layout() {
 
   const { loading, fetchAuthUserDetails } = useAuth();
 
+  
+
   useEffect(() => {
     fetchAuthUserDetails();
   }, [fetchAuthUserDetails]);
+
 
   if (loading) {
     return <Loader />;
@@ -32,6 +35,8 @@ export default function Layout() {
     return <GetStarted />;
   }
 
+  
+  
   return (
     <>
       <div className="h-screen flex w-full flex-col-reverse md:flex-row">

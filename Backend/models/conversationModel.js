@@ -5,15 +5,13 @@ const conversationSchema = mongoose.Schema(
     participants: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "userModel",
+        ref: "User",
       },
     ],
-    messages: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "messageModel",
-      },
-    ],
+    lastMessage : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : "messageModel",
+    }
   },
   {
     timestamps: true,

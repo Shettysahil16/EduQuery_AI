@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import summaryApi from "../../common";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSelectedConversation } from "../../store/conversationSlice";
 import FriendsCard from "../ChatSection/ChatUsers/FriendsCard";
+import { setAllSortedUsers } from "../../store/allUsersSlice";
+import { allSortedUsers } from "../../store/allUsersSlice";
 
 const ChatUsers = () => {
-  const [friendsData, setFriendsData] = useState([]);
   const [loading, setLoading] = useState(false);
   const loadingCards = Array(3).fill(null);
 
   const dispatch = useDispatch();
+  const sortedUsers = useSelector(allSortedUsers);
 
   const fetchChatUsers = async () => {
     try {
       setLoading(true);
-      const response = await fetch(summaryApi.chatFriends.url, {
+      const userResponse = await fetch(summaryApi.chatFriends.url, {
         method: summaryApi.chatFriends.method,
         credentials: "include",
         headers: {
@@ -23,10 +25,54 @@ const ChatUsers = () => {
         },
       });
 
-      const friends = await response.json();
+      const friends = await userResponse.json();
+      //console.log("friends in chatUsers", friends);
+
+      const convResponse = await fetch(summaryApi.getConversations.url, {
+        method: summaryApi.getConversations.method,
+        credentials: "include",
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+
+      const conversations = await convResponse.json();
+      //console.log("conversations", conversations);
 
       if (friends.success) {
-        setFriendsData(friends.data);
+        const allUsers = friends.data || [];
+        const allConvData = conversations.data || [];
+        //console.log("allUsers", allUsers);
+        //console.log("allConvData", allConvData);
+
+        const mergedList = allUsers.map((user) => {
+          //console.log("inside allUsers", user._id);
+
+          const conv = allConvData.find((conversation) =>
+            conversation.participants.some(
+              (participant) => participant._id === user._id
+            )
+          );
+          return conv
+            ? {
+                ...user,
+                conversationId: conv._id,
+                lastMessage: conv.lastMessage,
+              }
+            : user;
+        });
+
+        //console.log("mergedList", mergedList);
+
+        const sortedList = [...mergedList].sort((a, b) => {
+          const aDate = a?.lastMessage?.createdAt ? new Date(a.lastMessage.createdAt) : 0;
+          const bDate = b?.lastMessage?.createdAt ? new Date(b.lastMessage.createdAt) : 0;
+
+          return bDate - aDate
+        })
+        //console.log("sortedList", sortedList);
+        
+        dispatch(setAllSortedUsers(sortedList));
       }
 
       if (friends.error) {
@@ -43,8 +89,11 @@ const ChatUsers = () => {
     fetchChatUsers();
   }, []);
 
+  //console.log("Friend data in mobile", friendsData);
+  
+
   const handleSetSelectedConversation = (friendInfo) => {
-    //console.log("fine", friendInfo);
+    console.log("fine", friendInfo);
     dispatch(setSelectedConversation(friendInfo));
   };
 
@@ -67,7 +116,7 @@ const ChatUsers = () => {
           ? loadingCards.map((_, index) => {
               return <FriendsCard loading={loading} key={index} />;
             })
-          : friendsData.map((friend) => {
+          : sortedUsers.map((friend) => {
               return (
                 <div
                   key={friend?._id}

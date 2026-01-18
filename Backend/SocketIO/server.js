@@ -18,6 +18,10 @@ export const getReceiverSocketId = (receiverId) => {
   return users[receiverId];
 };
 
+export const getSenderSocketId = (senderId) => {
+  return users[senderId];
+};
+
 const users = {};
 
 io.on("connection", (socket) => {
@@ -29,7 +33,28 @@ io.on("connection", (socket) => {
   }
   io.emit("get-online", Object.keys(users));
 
-  socket.on("disconnect", (socket) => {
+  socket.on("typing", ({ senderId, receiverId }) => {
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("user-typing", { senderId });
+    }
+  });
+
+  socket.on("stop-typing", ({ senderId, receiverId }) => {
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("user-stop-typing", { senderId });
+    }
+  });
+
+  socket.on("message-delivered", ({ conversationId, messageId }) => {
+      io.emit("message-delivered", {
+        conversationId,
+        messageId,
+      });
+  });
+
+  socket.on("disconnect", () => {
     console.log("Client disconnected", socket.id);
     delete users[userId];
     io.emit("get-online", Object.keys(users));

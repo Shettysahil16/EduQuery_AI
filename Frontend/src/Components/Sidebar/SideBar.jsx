@@ -16,7 +16,7 @@ const SideBar = ({ expertName, setPanelDetail }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isExpertActive = location.pathname === "/expert"
+  const isExpertActive = location.pathname === "/experts"
   const isHistoryActive = location.pathname === "/history"
   const isChatActive = location.pathname === "/chats"
 
@@ -57,8 +57,8 @@ const SideBar = ({ expertName, setPanelDetail }) => {
         </div>
       </div>
       <div className="relative h-10 w-full flex justify-between px-4 md:h-full md:w-12 md:flex-col md:px-0 md:justify-start md:gap-10">
-        <div onClick={() => handlePanelClick("expert")} className="relative group">
-          <div className={`${(expertName === "expert" && isOpen || !isOpen && isExpertActive) ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer`}>
+        <div onClick={() => handlePanelClick("experts")} className="relative group">
+          <div className={`${(expertName === "experts" && isOpen || !isOpen && isExpertActive) ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer`}>
             <BrainIcon className="w-6 md:w-8 h-auto fill-white"/>
             <div className="font-medium hidden md:flex absolute -right-30 bottom-3 z-10 bg-Primary text-PrimaryText text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">
               Subject Tutor

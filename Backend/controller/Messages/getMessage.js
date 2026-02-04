@@ -1,5 +1,5 @@
-import conversationModel from "../models/conversationModel.js";
-import messageModel from "../models/messageModel.js";
+import conversationModel from "../../models/Chat_Models/conversationModel.js";
+import messageModel from "../../models/Chat_Models/messageModel.js";
 
 const getMessageController = async (req, res) => {
   try {

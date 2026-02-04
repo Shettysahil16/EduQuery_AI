@@ -1,4 +1,4 @@
-import conversationModel from '../models/conversationModel.js'
+import conversationModel from '../../models/Chat_Models/conversationModel.js'
 
 const getConversationsController = async (req, res) => {
   try {

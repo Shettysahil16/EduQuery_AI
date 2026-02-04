@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/userSlice";
 import { LuClock3 } from "react-icons/lu";
@@ -9,6 +10,8 @@ const ChatCard = ({ message, isDateChanged, showDate }) => {
   //console.log("message", message);
 
   const isMessageSent = message.status === 'sent'
+  //console.log("message status", isMessageSent);
+  
   //const isMessageDelivered = message.status === 'delivered'
   
   const loggedUser = useSelector(selectUser);
@@ -25,10 +28,13 @@ const ChatCard = ({ message, isDateChanged, showDate }) => {
 
   let statusIcon = null;
   if (isSender) {
+    if (message.status === "sending") {
+      statusIcon = <LuClock3 className="stroke-white h-auto w-4" />;
+    }
     if (message.status === "sent") {
-      statusIcon = <MessageSentIcon className="h-auto w-4" />;
+      statusIcon = <MessageSentIcon className="stroke-white h-auto w-4" />;
     } else if (message.status === "delivered") {
-      statusIcon = <MessageDeliveredIcon className="h-auto w-4" />;
+      statusIcon = <MessageDeliveredIcon className="stroke-white h-auto w-4" />;
     }
   }
 
@@ -48,15 +54,15 @@ const ChatCard = ({ message, isDateChanged, showDate }) => {
           <div className="flex flex-wrap items-end gap-x-2">
 
             <div className="wrap-break-word whitespace-pre-wrap py-2">
-              {message?.message}
+              <ReactMarkdown>{message?.message}</ReactMarkdown>
             </div>
 
-            <div className="flex items-center justify-center gap-1">
+            <div className="flex items-center justify-center gap-1 ml-auto">
               {isMessageSent && <div className="text-xs whitespace-nowrap self-end pb-1">{messageTime}</div>}
 
             <div className="text-xs whitespace-nowrap self-end pb-1">
               {isSender && (
-              <div className="text-xs whitespace-nowrap self-end pb-1">{statusIcon}</div>
+              <div className="text-xs whitespace-nowrap self-end">{statusIcon}</div>
             )}
             </div>
             </div>

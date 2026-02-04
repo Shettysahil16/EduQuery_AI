@@ -9,6 +9,7 @@ import History from "../Pages/ExpertsPage/Experts";
 import Layout from "../layout/Layout";
 import ChatPage from "../Pages/ChatSection/ChatPage";
 import ExpertPage from "../Pages/ExpertsPage/ExpertPage";
+import HistoryPage from "../Pages/HistoryPage/HistoryPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
           { path: "chats", element: <ChatPage /> },
           { path: "experts", element: <Experts />},
           { path: "/experts/:expertName", element: <ExpertPage /> },
+          { path: "/chats/:conversationId", element: <HistoryPage /> },
         ],
       },
 

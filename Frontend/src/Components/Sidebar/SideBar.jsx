@@ -4,7 +4,7 @@ import BrainIcon from "../../assets/icons/expert_icon.svg?react";
 import ChatIcon from "../../assets/icons/chat_section_icon.svg?react";
 import HistoryIcon from "../../assets/icons/history_icon.svg?react";
 import SettingIcon from "../../assets/icons/settings_icon.svg?react";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import {useNavigate, useLocation } from "react-router-dom";
 //context imports
 import { useSideBarPanel } from '../../Context/SideBarPanel/useSideBarPanel';
 import Logout from "../Logout";
@@ -75,7 +75,7 @@ const SideBar = ({ expertName, setPanelDetail }) => {
           </div>
         </div>
 
-        <div onClick={() => handlePanelClick("history")} className="relative group">
+        <div onClick={() => {setPanelDetail('history'); openSidebar();}} className="relative group">
           <button className={`${(expertName === "history" && isOpen || !isOpen && isHistoryActive) ? "bg-Secondary" : "bg-Primary"} py-2 px-2 rounded-sm cursor-pointer`}>
             <HistoryIcon className="w-6 md:w-8 h-auto fill-white"/>
             <div className="hidden md:flex font-medium absolute -right-22 bottom-3 z-10 bg-Primary text-PrimaryText text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">

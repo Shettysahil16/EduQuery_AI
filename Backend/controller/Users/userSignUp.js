@@ -1,4 +1,4 @@
-import userModel from "../models/userModel.js";
+import userModel from "../../models/User_Model/userModel.js";
 import bcrypt from 'bcrypt'
 
 const userSignUpController = async (req, res) => {

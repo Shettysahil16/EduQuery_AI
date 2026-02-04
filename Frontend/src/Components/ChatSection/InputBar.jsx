@@ -42,43 +42,45 @@ const InputBar = ({ conversationId }) => {
         message: sendMessageData,
         status: "sending",
         createdAt: new Date().toISOString(),
-      })
+      }),
     );
 
     try {
       setLoading(true);
-      const response = await fetch(
-        `${summaryApi.sendMessage.url}/${selectedFriend?._id}`,
-        {
-          method: summaryApi.sendMessage.method,
-          credentials: "include",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            message: sendMessageData,
-          }),
-        }
-      );
+      const response = await fetch(summaryApi.sendMessage.url, {
+        method: summaryApi.sendMessage.method,
+        credentials: "include",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          message: sendMessageData,
+          receiverIds: [selectedFriend?._id],
+        }),
+      });
 
       const dataResponse = await response.json();
+      console.log("lastMessage", dataResponse.data);
 
       if (dataResponse.success) {
         const receiverIndex = allUsers.findIndex(
-          (user) => user._id === selectedFriend._id
+          (user) => user._id === selectedFriend._id,
         );
         //console.log("receiverId", receiverIndex);
 
         if (receiverIndex === -1) return;
 
         const newSortedUsers = allUsers.filter(
-          (_, index) => index !== receiverIndex
+          (_, index) => index !== receiverIndex,
         );
         //console.log("newSortedUsers", newSortedUsers);
+        const lastMessageData = Array.isArray(dataResponse.data)
+          ? dataResponse.data[0] // first message
+          : dataResponse.data;
 
         const updatedReceiver = {
           ...allUsers[receiverIndex],
-          lastMessage: { ...dataResponse.data, status: "sent" },
+          lastMessage: { ...lastMessageData, status: "sent" },
         };
 
         dispatch(setAllSortedUsers([updatedReceiver, ...newSortedUsers]));
@@ -88,7 +90,7 @@ const InputBar = ({ conversationId }) => {
             tempId,
             messageId: dataResponse.data._id,
             updates: { ...dataResponse.data, status: "sent" },
-          })
+          }),
         );
         messageSentSound.current.play();
         setSendMessageData("");

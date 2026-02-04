@@ -4,8 +4,9 @@ import { selectedConversation } from "../../../store/conversationSlice";
 import { useSocket } from "../../../Context/Socket/useSocket";
 
 const FriendsCard = ({ loading, friend }) => {
-  const lastMessage = friend?.lastMessage?.message;
-  //console.log("last message", lastMessage);
+  
+
+  //console.log("last message", friend);
 
   const conversationId = useSelector(selectedConversation);
 
@@ -44,6 +45,17 @@ const FriendsCard = ({ loading, friend }) => {
       return `${day}-${month}-${year}`;
     }
   }
+
+  const stripMarkdown = (text = "") => {
+  return text
+    .replace(/!\[.*?\]\(.*?\)/g, "") // images
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1") // links
+    .replace(/[*_~`>#-]/g, "") // markdown chars
+    .replace(/\s+/g, " ")
+    .trim();
+};
+const lastMessage = stripMarkdown(friend?.lastMessage?.message);
+
 
   return (
     <>

@@ -7,16 +7,11 @@ export const getAiConversationsController = async(req,res) => {
         const userId = req.userId;
         const conversation = await aiConversationModel.find({
             userId : userId,
-        });
+        }).sort({ createdAt: -1 });
 
         if(conversation.length === 0){
             return res.status(200).json({data: [], message : 'No conversation found', success : true, error : false})
         };
-
-        const messages = await aiMessageModel.find({
-            conversationId : conversation._id,
-        })
-        console.log("messages in this conversation", messages);
         
 
         return res.status(200).json({

@@ -16,7 +16,9 @@ const HistoryPage = () => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-     const fetchAiMessages = async () => {
+  if (!conversationId) return;
+
+  const fetchAiMessages = async () => {
     try {
       setLoading(true);
       const response = await fetch(
@@ -24,32 +26,27 @@ const HistoryPage = () => {
         {
           method: summaryApi.getAiMessages.method,
           credentials: "include",
-          headers: {
-            "content-type": "application/json",
-          },
-        },
+          headers: { "content-type": "application/json" },
+        }
       );
 
       const result = await response.json();
-      //console.log("chat history", result);
-      //setMessages(result.data);
       dispatch(setMessages(result.data));
-      setLoading(false);
     } catch (error) {
-      console.log("error in fetching ai chat messages in historyPage", error);
-    }
-    finally{
+      console.log("error fetching messages", error);
+    } finally {
       setLoading(false);
     }
   };
 
-  
   fetchAiMessages();
-  }, [conversationId, dispatch]);
+}, [conversationId]); // ❌ remove dispatch from deps
+
+
 
   useEffect(() => {
       if (messages.length > 0) {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
       }
     }, [messages]);
 
@@ -60,9 +57,9 @@ const HistoryPage = () => {
   <div className="flex-1 overflow-y-auto scrollbar-custom">
     <div className="mx-auto w-full max-w-[60%] px-2  mb-16 flex flex-col gap-4">
       {
-        messages.map((message, index) => {
+        messages.map((message) => {
           return(
-            <HistoryPageCard message={message} key={index} loading={loading}/>
+            <HistoryPageCard message={message} key={message._id} loading={loading}/>
           )
         })
       }

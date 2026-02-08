@@ -23,7 +23,6 @@ const useGetSocketMessage = () => {
 
     
     const handleNewMessage = (newMessage) => {
-      
       socket.emit('message-delivered', {conversationId : newMessage.conversationId, messageId : newMessage._id})
 
       const senderIndex = allUsers.findIndex(

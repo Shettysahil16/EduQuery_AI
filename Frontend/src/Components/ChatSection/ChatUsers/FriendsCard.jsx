@@ -4,9 +4,6 @@ import { selectedConversation } from "../../../store/conversationSlice";
 import { useSocket } from "../../../Context/Socket/useSocket";
 
 const FriendsCard = ({ loading, friend }) => {
-  
-
-  //console.log("last message", friend);
 
   const conversationId = useSelector(selectedConversation);
 
@@ -48,9 +45,9 @@ const FriendsCard = ({ loading, friend }) => {
 
   const stripMarkdown = (text = "") => {
   return text
-    .replace(/!\[.*?\]\(.*?\)/g, "") // images
-    .replace(/\[(.*?)\]\(.*?\)/g, "$1") // links
-    .replace(/[*_~`>#-]/g, "") // markdown chars
+    .replace(/!\[.*?\]\(.*?\)/g, "") 
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1") 
+    .replace(/[*_~`>#-]/g, "") 
     .replace(/\s+/g, " ")
     .trim();
 };

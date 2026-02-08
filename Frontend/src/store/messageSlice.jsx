@@ -39,6 +39,22 @@ export const messageSlice = createSlice({
         state.conversation[convId] = [];
       }
 
+      const existing = state.conversation[convId].find(
+        (m) => m._id === msg._id,
+      );
+
+      // 🔥 STREAM APPEND MODE
+      if (existing && msg.append) {
+        existing.content += msg.content || "";
+        return;
+      }
+
+      // 🔹 UPDATE MODE (flags, status, ids, etc.)
+      if (existing && !msg.append) {
+        Object.assign(existing, msg);
+        return;
+      }
+
       state.conversation[convId].push(msg);
     },
 
@@ -49,26 +65,50 @@ export const messageSlice = createSlice({
       }
     },
 
-    updateMessageStatus : (state, action) => {
-      const {convId, tempId, messageId, updates} = action.payload;
+    updateMessage: (state, action) => {
+      const { _id, conversationId, content, streaming } = action.payload;
+
+      const messages = state.conversation[conversationId];
+      if (!messages) return;
+
+      const msg = messages.find((m) => m._id === _id);
+      if (!msg) return;
+
+      msg.content = content;
+
+      if (streaming !== undefined) {
+        msg.streaming = streaming;
+      }
+    },
+
+    updateMessageStatus: (state, action) => {
+      const { convId, tempId, messageId, updates } = action.payload;
 
       const messages = state.conversation[convId];
       if (!messages) return;
-      
-      const index = messages.findIndex(m => m._id === tempId || m._id === messageId);
 
-      if(index !== -1){
-        messages[index] = {...messages[index], ...updates};
+      const index = messages.findIndex(
+        (m) => m._id === tempId || m._id === messageId,
+      );
+
+      if (index !== -1) {
+        messages[index] = { ...messages[index], ...updates };
       }
 
       if (tempId && messageId) {
-      messages[index]._id = messageId;
-    }
-    }
+        messages[index]._id = messageId;
+      }
+    },
   },
 });
 
-export const { setMessages, addMessage, clearConversation, updateMessageStatus } = messageSlice.actions;
+export const {
+  setMessages,
+  addMessage,
+  clearConversation,
+  updateMessage,
+  updateMessageStatus,
+} = messageSlice.actions;
 
 export const selectMessages = (conversationId) => (state) =>
   state.messages.conversation[conversationId] ?? EMPTY_ARRAY;
@@ -101,3 +141,4 @@ export default messageSlice.reducer;
   
 */
 }
+

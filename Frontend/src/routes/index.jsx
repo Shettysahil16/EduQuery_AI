@@ -23,7 +23,7 @@ const router = createBrowserRouter([
           { path: "history", element: <History /> },
           { path: "chats", element: <ChatPage /> },
           { path: "experts", element: <Experts />},
-          { path: "/experts/:expertName", element: <ExpertPage /> },
+          { path: "/experts/:expertName/:tutorId", element: <ExpertPage /> },
           { path: "/chats/:conversationId", element: <HistoryPage /> },
         ],
       },

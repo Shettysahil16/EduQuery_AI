@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Card from './Card'
 import summaryApi from '../../common';
+import { selectNewConversationCounter } from '../../store/newConversation';
+import { useSelector } from 'react-redux';
 
 const HistoryCard = () => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const cards = Array.from({ length: 20 });
+
+  const newConversationCounter = useSelector(selectNewConversationCounter);
 
   const fetchChatHistory = async() => {
     try {
@@ -36,7 +40,7 @@ const HistoryCard = () => {
 
   useEffect(() => {
     fetchChatHistory();
-  },[])
+  },[newConversationCounter])
   return (
     <div className='flex flex-col gap-4 px-2'>
       <div className='border-2 rounded-md py-1 border-Primary text-center cursor-pointer mt-5 font-medium group text-2xl hover:bg-Primary hover:text-white transition-all'>

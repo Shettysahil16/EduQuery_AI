@@ -48,6 +48,7 @@ const Experts = () => {
       console.log("useEffect",experts);
     },[experts])
 
+
     
 
   return (
@@ -58,7 +59,7 @@ const Experts = () => {
         {
           filteredExperts.map((expert,index) => {
             return(
-              <ExpertCard key={index} tutor={expert} />
+              <ExpertCard key={index} tutor={expert}/>
             )
           })
         }

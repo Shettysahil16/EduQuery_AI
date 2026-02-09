@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Prompt from "../Components/Prompt";
 import { useSelector, useDispatch } from "react-redux";
-import { addMessage, selectMessages, setMessages } from "../store/messageSlice";
+import { selectMessages, setMessages } from "../store/messageSlice";
 import summaryApi from "../common";
 import HistoryPageCard from "./HistoryPage/HistoryPageCard";
 

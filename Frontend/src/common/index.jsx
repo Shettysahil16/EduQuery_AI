@@ -49,6 +49,10 @@ const summaryApi = {
         url : `${backendDomain}/api/get-ai-messages`,
         method : "get",
     },
+    getChatPdf : {
+        url : `${backendDomain}/api/pdf`,
+        method : "get",
+    }
 }
 
 export default summaryApi;

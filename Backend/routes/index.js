@@ -12,6 +12,7 @@ import { askAIController } from '../controller/AI/askAI.js';
 import { getTutorsController } from '../controller/AI/getTutors.js';
 import { getAiConversationsController } from '../controller/AI/getConversations.js';
 import { getAiMessagesController } from '../controller/AI/getMessages.js';
+import { chatPdfController } from '../controller/chatPdf.js';
 
 
 const router = express.Router();
@@ -30,6 +31,8 @@ router.post("/ai/ask", authToken, askAIController)
 router.get("/tutors", authToken, getTutorsController)
 router.get("/chat-history", authToken, getAiConversationsController)
 router.get("/get-ai-messages/:id", authToken, getAiMessagesController)
+
+router.get("/pdf/:conversationId", authToken, chatPdfController);
 
 
 export default router

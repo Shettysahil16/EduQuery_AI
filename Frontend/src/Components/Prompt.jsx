@@ -4,11 +4,13 @@ import summaryApi from "../common";
 import { useDispatch } from "react-redux";
 import { addMessage, updateMessage, updateMessageStatus } from "../store/messageSlice";
 import { incrementNewConversation } from "../store/newConversation";
+import { useNavigate } from "react-router-dom";
 
 const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
   const [question, setQuestion] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef(null);
+  const navigate = useNavigate();
 
   const isDisabled = !question.trim();
   const tempConversationIdRef = useRef(null);
@@ -96,6 +98,8 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
             if (data.conversationId && !conversationId) {
               activeConvId = data.conversationId;
               onConversationCreated?.(activeConvId);
+
+              navigate(`/chats/${activeConvId}`, { replace: true });
 
               dispatch(incrementNewConversation());
 

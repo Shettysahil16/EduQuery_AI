@@ -18,7 +18,7 @@ const ExpertCard = () => {
         {
           experts.map((expert, index) => {
             return(
-              <Card key={index} name={expert.Name} expertUrl={expert.expertUrl} path={expert.path}/>
+              <Card key={index} expert={expert} name={expert.Name} expertUrl={expert.url} path={expert.path}/>
             )
           })
         }

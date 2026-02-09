@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Card = ({name, expertUrl, path}) => {
+const Card = ({name, expertUrl, path, expert}) => {
+  console.log("experts", expert);
+  
   return (
     <Link to={`/experts/${expertUrl}`} className='h-32 w-full border-2 rounded flex items-center cursor-pointer transition-all hover:scale-102'>
       <div className='h-full w-[40%] flex justify-center items-center'>
@@ -20,3 +22,5 @@ const Card = ({name, expertUrl, path}) => {
 }
 
 export default Card
+
+///experts/${tutor.url}/${tutor.tutorId}

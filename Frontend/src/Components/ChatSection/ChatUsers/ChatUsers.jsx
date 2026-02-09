@@ -6,17 +6,20 @@ import { useState } from "react";
 import summaryApi from "../../../common";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedConversation } from "../../../store/conversationSlice";
-import { allSortedUsers, setAllSortedUsers } from "../../../store/allUsersSlice";
+import {
+  allSortedUsers,
+  setAllSortedUsers,
+} from "../../../store/allUsersSlice";
 import { Link } from "react-router-dom";
 
 const ChatUsers = () => {
   const [loading, setLoading] = useState(false);
   const loadingCards = Array(4).fill(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const dispatch = useDispatch();
   const sortedUsers = useSelector(allSortedUsers);
   //console.log("sortedUsers", sortedUsers);
-  
 
   const fetchChatUsers = async () => {
     try {
@@ -54,8 +57,8 @@ const ChatUsers = () => {
 
           const conv = allConvData.find((conversation) =>
             conversation.participants.some(
-              (participant) => participant._id === user._id
-            )
+              (participant) => participant._id === user._id,
+            ),
           );
           return conv
             ? {
@@ -69,12 +72,16 @@ const ChatUsers = () => {
         //console.log("mergedList", mergedList);
 
         const sortedList = [...mergedList].sort((a, b) => {
-          const aDate = a?.lastMessage?.createdAt ? new Date(a.lastMessage.createdAt) : 0;
-          const bDate = b?.lastMessage?.createdAt ? new Date(b.lastMessage.createdAt) : 0;
+          const aDate = a?.lastMessage?.createdAt
+            ? new Date(a.lastMessage.createdAt)
+            : 0;
+          const bDate = b?.lastMessage?.createdAt
+            ? new Date(b.lastMessage.createdAt)
+            : 0;
 
-          return bDate - aDate
-        })
-    
+          return bDate - aDate;
+        });
+
         dispatch(setAllSortedUsers(sortedList));
       }
 
@@ -89,7 +96,6 @@ const ChatUsers = () => {
     }
   };
 
-
   useEffect(() => {
     fetchChatUsers();
   }, []);
@@ -98,6 +104,10 @@ const ChatUsers = () => {
     //console.log("fine", friendInfo);
     dispatch(setSelectedConversation(friendInfo));
   };
+
+  const filteredUsers = sortedUsers.filter((friend) =>
+    friend?.fullName?.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   return (
     <>
@@ -109,6 +119,8 @@ const ChatUsers = () => {
               type="text"
               className="w-full h-12 border-3 border-Primary rounded-md p-2 outline-none text-white placeholder-white font-medium"
               placeholder="🔍 Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           <div className="h-0.75 bg-Secondary mt-4 rounded-full" />
@@ -119,9 +131,10 @@ const ChatUsers = () => {
             ? loadingCards.map((_, index) => {
                 return <FriendsCard loading={loading} key={index} />;
               })
-            : sortedUsers.map((friend) => {
+            : filteredUsers.map((friend) => {
                 return (
-                  <Link to={'chats'}
+                  <Link
+                    to={"chats"}
                     key={friend?._id}
                     onClick={() => handleSetSelectedConversation(friend)}
                   >
@@ -129,6 +142,12 @@ const ChatUsers = () => {
                   </Link>
                 );
               })}
+
+          {!loading && filteredUsers.length === 0 && (
+            <div className="text-center text-black mt-4 font-medium">
+              No friends found
+            </div>
+          )}
         </div>
       </div>
     </>

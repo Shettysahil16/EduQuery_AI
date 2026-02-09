@@ -4,6 +4,28 @@ import { askGemini } from "../../services/gemini.service.js";
 import { tutors } from "../../data/tutors.js";
 import mongoose from "mongoose";
 
+async function generateTitle(question, conversationId, model) {
+      try {
+        const titlePrompt = `Generate a very short, concise title (max 5 words) for a chat that starts with this question: "${question}". Return only the title text.`;
+
+        // Use your existing askGemini service (non-streaming if possible,
+        // or just collect the full string)
+        let generatedTitle = "";
+        await askGemini(titlePrompt, model, (token) => {
+          generatedTitle += token;
+        });
+
+        // Clean up formatting (Gemini sometimes adds quotes or periods)
+        const cleanTitle = generatedTitle.replace(/["']/g, "").trim();
+
+        await aiConversationModel.findByIdAndUpdate(conversationId, {
+          title: cleanTitle,
+        });
+      } catch (err) {
+        console.error("Title Generation Error:", err);
+      }
+    }
+    
 export const askAIController = async (req, res) => {
   try {
     const userId = req.userId;
@@ -55,7 +77,11 @@ export const askAIController = async (req, res) => {
         subject: tutor.subject,
         historyName: tutor.historyName,
       });
+
+      generateTitle(question, conversation._id, tutor.model);
     }
+
+    
 
     res.write(
       `data: ${JSON.stringify({ conversationId: conversation._id })}\n\n`,

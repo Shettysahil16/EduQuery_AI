@@ -13,7 +13,7 @@ import HistoryPageCard from "../HistoryPage/HistoryPageCard";
 
 const ExpertPage = () => {
   const { expertName, tutorId } = useParams();
-  console.log(expertName, tutorId);
+  //console.log(expertName, tutorId);
   const [loading, setLoading] = useState(false);
   const authUser = useSelector(selectUser);
   const [conversationId, setConversationId] = useState(null);

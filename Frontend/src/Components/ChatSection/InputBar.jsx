@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MessageSendIcon from "../../assets/icons/message_send_icon.svg?react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage, updateMessageStatus } from "../../store/messageSlice";
@@ -19,6 +19,7 @@ const InputBar = ({ conversationId }) => {
   const socket = socketRef.current;
   const typingTimeout = useRef(null);
   const messageSentSound = useRef(new Audio(sentSound));
+  const textareaRef = useRef(null);
 
   const dispatch = useDispatch();
   const selectedFriend = useSelector(selectedConversation);
@@ -104,8 +105,17 @@ const InputBar = ({ conversationId }) => {
     }
   };
 
+  const autoResizeTextarea = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    textarea.style.height = "auto"; // reset
+    textarea.style.height = `${Math.min(textarea.scrollHeight, 120)}px`; // max height
+  };
+
   const handleOnChange = (e) => {
     setSendMessageData(e.target.value);
+    autoResizeTextarea();
 
     if (socket && selectedFriend) {
       socket.emit("typing", {
@@ -124,12 +134,18 @@ const InputBar = ({ conversationId }) => {
     }
   };
 
+  useEffect(() => {
+  textareaRef.current?.focus();
+}, [conversationId]);
+
+
   return (
-    <div className="bg-Octonary h-full flex rounded-sm shadow-md">
-      <div className="flex h-full w-full p-1">
-        <input
-          type="text"
-          className="w-full h-full outline-none px-2"
+    <div className="bg-Octonary flex rounded-sm shadow-md">
+      <div className="flex w-full p-1">
+        <textarea
+          ref={textareaRef}
+          rows={1}
+          className="w-full resize-none overflow-y-auto outline-none px-2 py-2 bg-transparent scrollbar-custom"
           placeholder="Type a message"
           value={sendMessageData}
           onChange={handleOnChange}

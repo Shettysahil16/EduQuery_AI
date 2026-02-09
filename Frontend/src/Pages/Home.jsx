@@ -10,7 +10,7 @@ const Home = () => {
   const [conversationId, setConversationId] = useState(null);
   const dispatch = useDispatch();
   const messagesEndRef = useRef(null);
-  console.log("conversationId", conversationId);
+  //console.log("conversationId", conversationId);
 
   // Get messages for current conversation
   const messages = useSelector((state) =>
@@ -54,7 +54,7 @@ const Home = () => {
     }
   }, [messages.length]);
 
-  console.log("messages", messages);
+  //console.log("messages", messages);
 
   return (
     <div className="bg-Septenary h-screen w-full text-white flex flex-col overflow-hidden">

@@ -47,7 +47,7 @@ const ChatPage = () => {
       );
       //console.log("messages", response);
       const result = await response.json();
-      console.log("result", result);
+      //console.log("result", result);
       //console.log("messages of result data", result.data);
 
       if (result.success && result.conversationId) {
@@ -56,7 +56,7 @@ const ChatPage = () => {
       }
 
       if (result.success) {
-        console.log(result);
+        //console.log(result);
         const convId = result.conversationId;
 
         if (!convId) return;

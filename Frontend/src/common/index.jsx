@@ -52,7 +52,11 @@ const summaryApi = {
     getChatPdf : {
         url : `${backendDomain}/api/pdf`,
         method : "get",
-    }
+    },
+    deleteConversation : {
+        url : `${backendDomain}/api/delete-conversation`,
+        method : "delete",
+    },
 }
 
 export default summaryApi;

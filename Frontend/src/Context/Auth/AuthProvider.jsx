@@ -26,10 +26,6 @@ export const AuthProvider = ({ children }) => {
       if (userData.success) {
         dispatch(setUserDetails(userData.data));
       }
-
-      if (userData.error) {
-        toast.error(userData.message);
-      }
     } catch (error) {
       setLoading(false);
       console.log("error in fetching user details", error);

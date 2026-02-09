@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import MenuIcon from "../../assets/icons/menu_icon.svg?react";
 import MobileSideBar from "../MobileSideBar";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import DownloadPdfIcon from "../../assets/icons/download-file-svgrepo-com.svg?react";
 
 import summaryApi from "../../common";
 const TopBar = () => {
   const { conversationId } = useParams();
-  
+  const location = useLocation();
+  //console.log("location", location);
+
+  const isConversationId = location.pathname === `/chats/${conversationId}`;
+  //console.log("is conversationId", isConversationId);
 
   const downloadPdf = async () => {
-    const response = await fetch(`${summaryApi.getChatPdf.url}/${conversationId}`, {
-      method: summaryApi.getChatPdf.method,
-      credentials: "include",
-      headers: {
-        "content-type": "application/json",
+    const response = await fetch(
+      `${summaryApi.getChatPdf.url}/${conversationId}`,
+      {
+        method: summaryApi.getChatPdf.method,
+        credentials: "include",
+        headers: {
+          "content-type": "application/json",
+        },
       },
-    });
+    );
 
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
@@ -39,14 +46,19 @@ const TopBar = () => {
 
       <div className="w-full flex justify-between items-center">
         <Link to={"/"}>EduQuery AI</Link>
-        <div className="relative">
-          <div onClick={downloadPdf} className="w-fit p-2 rounded-full bg-Primary mr-20 cursor-pointer group relative">
-            <DownloadPdfIcon className="stroke-white h-7 w-auto group-hover:scale-110 transition-transform" />
+        <div className="relative py-1">
+          {isConversationId && (
+            <div
+              onClick={downloadPdf}
+              className="w-fit p-2 rounded-full border-2 mr-20 cursor-pointer group relative"
+            >
+              <DownloadPdfIcon className="stroke-white h-6 w-auto group-hover:scale-110 transition-transform" />
 
-            <div className="absolute -right-15 -bottom-10 bg-Primary px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity flex justify-center items-center whitespace-nowrap pointer-events-none">
-              <p className="text-PrimaryText text-sm">Download section PDF</p>
+              <div className="absolute -right-15 -bottom-10 bg-Primary px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity flex justify-center items-center whitespace-nowrap pointer-events-none">
+                <p className="text-PrimaryText text-sm">Download section PDF</p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 

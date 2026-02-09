@@ -130,6 +130,13 @@
     fill: var(--color-septenary);
   }
 
+  .stroke-Primary {
+  stroke: var(--color-primary);
+  }
+  .stroke-Secondary {
+    stroke: var(--color-secondary);
+  }
+
 
   /* Border colors */
 .border-Primary {

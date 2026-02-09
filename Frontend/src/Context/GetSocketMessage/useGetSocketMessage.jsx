@@ -16,7 +16,7 @@ const useGetSocketMessage = () => {
   //console.log("selected friend id", selectedFriend?._id);
 
   useEffect(() => {
-    console.log("socket", socketRef.current);
+    //console.log("socket", socketRef.current);
     if (!socketRef.current) return;
 
     const socket = socketRef.current;
@@ -43,7 +43,7 @@ const useGetSocketMessage = () => {
       dispatch(setAllSortedUsers([senderUser, ...updatedUsersList]));
       dispatch(addMessage(newMessage));
 
-      console.log("newMessage", newMessage);
+      //console.log("newMessage", newMessage);
       //console.log("sender friend id", newMessage?.senderId);
 
       const isSameFriend = selectedFriend?._id === newMessage?.senderId;

@@ -2,14 +2,18 @@ import React, { useState, useRef, useEffect } from "react";
 import SendIcon from "../assets/icons/message_send_icon.svg?react";
 import summaryApi from "../common";
 import { useDispatch } from "react-redux";
-import { addMessage, updateMessage, updateMessageStatus } from "../store/messageSlice";
+import {
+  addMessage,
+  updateMessage,
+  updateMessageStatus,
+} from "../store/messageSlice";
 import { incrementNewConversation } from "../store/newConversation";
 import { useNavigate } from "react-router-dom";
 
 const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
   const [question, setQuestion] = useState("");
   const dispatch = useDispatch();
-  const inputRef = useRef(null);
+  const textareaRef = useRef(null);
   const navigate = useNavigate();
 
   const isDisabled = !question.trim();
@@ -17,7 +21,7 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
 
   // Focus input on mount
   useEffect(() => {
-    inputRef.current?.focus();
+    textareaRef.current?.focus();
   }, []);
 
   const handleAskQuestion = async (e) => {
@@ -45,7 +49,7 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
         role: "user",
         content: currentQuestion,
         createdAt: new Date().toISOString(),
-      })
+      }),
     );
 
     // Add an empty AI message for streaming
@@ -56,7 +60,7 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
         role: "ai",
         content: "",
         streaming: true,
-      })
+      }),
     );
 
     try {
@@ -64,7 +68,11 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
         method: summaryApi.askAI.method,
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: currentQuestion, tutorId, conversationId: convIdToUse }),
+        body: JSON.stringify({
+          question: currentQuestion,
+          tutorId,
+          conversationId: convIdToUse,
+        }),
       });
 
       const reader = response.body.getReader();
@@ -109,7 +117,7 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
                   tempId: tempUserId,
                   messageId: tempUserId,
                   updates: { conversationId: activeConvId },
-                })
+                }),
               );
               dispatch(
                 updateMessageStatus({
@@ -117,7 +125,7 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
                   tempId: tempAIId,
                   messageId: tempAIId,
                   updates: { conversationId: activeConvId },
-                })
+                }),
               );
             }
 
@@ -132,7 +140,7 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
                   content: data.token,
                   append: true,
                   streaming: true,
-                })
+                }),
               );
             }
 
@@ -144,7 +152,7 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
                   conversationId: activeConvId,
                   content: fullAnswer,
                   streaming: false,
-                })
+                }),
               );
             }
           } catch (err) {
@@ -164,24 +172,38 @@ const Prompt = ({ conversationId, onConversationCreated, tutorId }) => {
           conversationId: convIdToUse,
           content: "Error: Failed to get response",
           streaming: false,
-        })
+        }),
       );
     }
   };
 
+  const autoResizeTextarea = () => {
+    const el = textareaRef.current;
+    if (!el) return;
+
+    el.style.height = "auto";
+    el.style.height = `${Math.min(el.scrollHeight, 120)}px`; // max ~5 lines
+  };
+
   return (
-    <div className="h-14 bg-Octonary w-full flex justify-center items-center text-white rounded-full px-4">
-      <input
-        ref={inputRef}
-        type="text"
+    <div className="bg-Octonary w-full flex justify-center items-center text-white rounded-xl px-4 overflow-hidden">
+      <textarea
+        ref={textareaRef}
+        rows={1}
         value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        className="h-full w-full rounded-full outline-none px-2"
+        onChange={(e) => {
+          setQuestion(e.target.value);
+          autoResizeTextarea();
+        }}
+        className="w-full resize-none overflow-y-auto outline-none flex items-center py-4 pr-1 justify-center bg-transparent leading-5 scrollbar-custom"
         placeholder="Ask anything"
       />
+
       <SendIcon
         className={`w-8 h-auto transition-all ${
-          isDisabled ? "fill-slate-400 opacity-50" : "cursor-pointer fill-Quinary hover:scale-105"
+          isDisabled
+            ? "fill-slate-400 opacity-50"
+            : "cursor-pointer fill-Quinary hover:scale-105"
         }`}
         onClick={!isDisabled ? handleAskQuestion : undefined}
       />

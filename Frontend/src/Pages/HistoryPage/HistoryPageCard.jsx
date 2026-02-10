@@ -9,7 +9,7 @@ import ShareCard from "../../Components/Share/ShareCard";
 
 
 const HistoryPageCard = ({ message, loading, userQuestion }) => {
-  console.log("user question inside HistoryPageCard", userQuestion);
+  //console.log("user question inside HistoryPageCard", userQuestion);
   //console.log("message inside HistoryPageCard", message);
   const [copied, setCopied] = useState(false);
   const [isShareVisible, setShareVisible] = useState(false);

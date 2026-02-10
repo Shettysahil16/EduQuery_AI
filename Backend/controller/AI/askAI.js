@@ -5,28 +5,37 @@ import { tutors } from "../../data/tutors.js";
 import mongoose from "mongoose";
 
 async function generateTitle(question, conversationId, model) {
-      try {
-        const titlePrompt = `Generate a very short, concise title (max 5 words) for a chat that starts with this question: "${question}". Return only the title text.`;
+  try {
+    const titlePrompt = `Generate a very short, concise title (max 5 words) for a chat that starts with this question: "${question}". Return only the title text.`;
 
-        // Use your existing askGemini service (non-streaming if possible,
-        // or just collect the full string)
-        let generatedTitle = "";
-        await askGemini(titlePrompt, model, (token) => {
-          generatedTitle += token;
-        });
+    // Use your existing askGemini service (non-streaming if possible,
+    // or just collect the full string)
+    let generatedTitle = "";
+    await askGemini(titlePrompt, model, (token) => {
+      generatedTitle += token;
+    });
 
-        // Clean up formatting (Gemini sometimes adds quotes or periods)
-        const cleanTitle = generatedTitle.replace(/["']/g, "").trim();
+    // Clean up formatting (Gemini sometimes adds quotes or periods)
+    const cleanTitle = generatedTitle.replace(/["']/g, "").trim();
 
-        await aiConversationModel.findByIdAndUpdate(conversationId, {
-          title: cleanTitle,
-        });
-      } catch (err) {
-        console.error("Title Generation Error:", err);
-      }
-    }
-    
+    await aiConversationModel.findByIdAndUpdate(conversationId, {
+      title: cleanTitle,
+    });
+  } catch (err) {
+    console.error("Title Generation Error:", err);
+  }
+}
+
 export const askAIController = async (req, res) => {
+  const abortController = new AbortController();
+  let aborted = false;
+
+  req.on("aborted", () => {
+    aborted = true;
+    abortController.abort();
+  });
+  
+
   try {
     const userId = req.userId;
     const { question, tutorId, conversationId } = req.body;
@@ -81,8 +90,6 @@ export const askAIController = async (req, res) => {
       generateTitle(question, conversation._id, tutor.model);
     }
 
-    
-
     res.write(
       `data: ${JSON.stringify({ conversationId: conversation._id })}\n\n`,
     );
@@ -113,10 +120,17 @@ export const askAIController = async (req, res) => {
     let fullAnswer = "";
 
     // 5. Stream from Gemini
-    await askGemini(finalPrompt, tutor.model, (token) => {
-      fullAnswer += token;
-      res.write(`data: ${JSON.stringify({ token })}\n\n`);
-    });
+    await askGemini(
+      finalPrompt,
+      tutor.model,
+      (token) => {
+        fullAnswer += token;
+        res.write(`data: ${JSON.stringify({ token })}\n\n`);
+      },
+      abortController.signal,
+    );
+
+    if (aborted) return res.end();
 
     if (!fullAnswer.trim()) throw new Error("AI returned empty response");
 

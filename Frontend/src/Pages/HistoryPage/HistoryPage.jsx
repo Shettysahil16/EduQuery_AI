@@ -57,9 +57,11 @@ const HistoryPage = () => {
   <div className="flex-1 overflow-y-auto scrollbar-custom">
     <div className="mx-auto w-full max-w-[60%] px-2  mb-16 flex flex-col gap-4">
       {
-        messages.map((message) => {
+        messages.map((message, index) => {
+          const previousUserMessage = message.role === "ai" && messages[index - 1]?.role === "user" ? messages[index - 1] : null;
+          
           return(
-            <HistoryPageCard message={message} key={message._id} loading={loading}/>
+            <HistoryPageCard message={message} key={message._id} loading={loading} userQuestion={previousUserMessage}/>
           )
         })
       }

@@ -7,7 +7,9 @@ import { toast } from "react-toastify";
 import { addMessage, updateMessageStatus } from "../../store/messageSlice";
 import { selectUser } from "../../store/userSlice";
 
-const ShareCard = ({ onClose, message }) => {
+const ShareCard = ({ onClose, message, userQuestion }) => {
+  console.log("message inside shareCard", message);
+
   const [loading, setLoading] = useState(false);
   //const [conversationId, setConversationId] = useState([]);
   const [allFriends, setAllFriends] = useState([]);
@@ -15,6 +17,16 @@ const ShareCard = ({ onClose, message }) => {
   const [selectedConversationIds, setSelectedConversationIds] = useState([]);
   const showSendButton = selectedIds.length !== 0;
   const [searchTerm, setSearchTerm] = useState("");
+
+  const capitalizeFirstLetter = (text) => {
+    if (!text) return "";
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  };
+
+  const formattedQuestion = capitalizeFirstLetter(userQuestion || "");
+  const shareText = userQuestion
+    ? `# **Q . ${formattedQuestion}**\n\n${message}`
+    : message;
 
   const dispatch = useDispatch();
   const loggedUser = useSelector(selectUser);
@@ -102,7 +114,7 @@ const ShareCard = ({ onClose, message }) => {
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          message: message,
+          message: shareText,
           receiverIds: selectedIds,
         }),
       });
@@ -182,11 +194,10 @@ const ShareCard = ({ onClose, message }) => {
         )}
 
         {!loading && filteredUsers.length === 0 && (
-            <div className="h-full w-full flex justify-center text-white mt-4 font-medium">
-              No friends found
-            </div>
-          )}
-
+          <div className="h-full w-full flex justify-center text-white mt-4 font-medium">
+            No friends found
+          </div>
+        )}
       </div>
     </div>
   );

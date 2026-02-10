@@ -7,7 +7,7 @@ import MessageSentIcon from '../../assets/icons/tick-svgrepo-com.svg?react'
 import MessageDeliveredIcon from '../../assets/icons/seen-svgrepo-com.svg?react'
 
 const ChatCard = ({ message, isDateChanged, showDate }) => {
-  //console.log("message", message);
+  console.log("message", message);
 
   const isMessageSent = message.status === 'sent'
   //console.log("message status", isMessageSent);
@@ -47,7 +47,7 @@ const ChatCard = ({ message, isDateChanged, showDate }) => {
           </div>
         )}
         <div
-          className={`${isSender ? "bg-Primary" : "bg-Secondary"} ${
+          className={`${isSender ? "bg-slate-800 px-2" : "bg-Secondary"} ${
             isSender ? "ml-auto" : ""
           } flex gap-2 max-w-[50%] w-fit rounded px-1`}
         >

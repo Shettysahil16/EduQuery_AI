@@ -82,7 +82,7 @@ const ExpertPage = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 text-[10px] md:text-sm ld:text-lg">
+            <div className="flex flex-col gap-4 text-[10px] md:text-sm lg:text-lg">
               <p className="font-normal text-center">
                 I’m here to help you with {expertName} from basics to advanced
                 topics.<br></br> Feel free to ask any doubt, and I’ll guide you

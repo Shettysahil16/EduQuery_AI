@@ -2,10 +2,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  counter : 0, // increments whenever a new conversation is created
+  counter: 0, // increments whenever a new conversation is created
 };
 
-const newConversationSlice  = createSlice({
+const newConversationSlice = createSlice({
   name: "newConversation",
   initialState,
   reducers: {
@@ -15,8 +15,8 @@ const newConversationSlice  = createSlice({
   },
 });
 
-export const { incrementNewConversation } = newConversationSlice .actions;
+export const { incrementNewConversation } = newConversationSlice.actions;
 export const selectNewConversationCounter = (state) =>
   state.newConversation.counter;
 
-export default newConversationSlice .reducer;
+export default newConversationSlice.reducer;

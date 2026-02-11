@@ -57,6 +57,18 @@ const summaryApi = {
         url : `${backendDomain}/api/delete-conversation`,
         method : "delete",
     },
+    forget_password : {
+        url : `${backendDomain}/api/forget-password`,
+        method : "post",
+    },
+    verify_password : {
+        url : `${backendDomain}/api/verify-password`,
+        method : "post",
+    },
+    new_password : {
+        url : `${backendDomain}/api/new-password`,
+        method : "put",
+    },
 }
 
 export default summaryApi;

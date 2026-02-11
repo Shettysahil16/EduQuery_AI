@@ -130,9 +130,9 @@ const Login = () => {
                       ))}
                   </div>
                 </div>
-                <p className="w-fit ml-auto font-normal text-sm md:text-lg cursor-pointer hover:underline">
+                <Link to={'/foget-password'} className="w-fit ml-auto font-normal text-sm md:text-lg cursor-pointer hover:underline">
                   forget password?
-                </p>
+                </Link>
               </div>
               <div
                 onClick={handleSubmitUserData}

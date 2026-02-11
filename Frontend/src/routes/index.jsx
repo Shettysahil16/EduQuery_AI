@@ -10,6 +10,9 @@ import Layout from "../layout/Layout";
 import ChatPage from "../Pages/ChatSection/ChatPage";
 import ExpertPage from "../Pages/ExpertsPage/ExpertPage";
 import HistoryPage from "../Pages/HistoryPage/HistoryPage";
+import ForgetPassword from "../Pages/ChangePassword/ForgetPassword";
+import VerifyPassword from "../Pages/ChangePassword/VerifyPassword";
+import SetNewPassword from "../Pages/ChangePassword/SetNewPassword";
 
 const router = createBrowserRouter([
   {
@@ -22,13 +25,12 @@ const router = createBrowserRouter([
           { index: true, element: <Home /> }, // default main content
           { path: "history", element: <History /> },
           { path: "chats", element: <ChatPage /> },
-          { path: "experts", element: <Experts />},
+          { path: "experts", element: <Experts /> },
           { path: "/experts/:expertName/:tutorId", element: <ExpertPage /> },
           { path: "/chats/:conversationId", element: <HistoryPage /> },
         ],
       },
 
-      
       {
         path: "/get-started",
         element: <GetStarted />,
@@ -40,6 +42,18 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/foget-password",
+        element: <ForgetPassword />,
+      },
+      {
+        path: "/verify-password",
+        element: <VerifyPassword />,
+      },
+      {
+        path: "/new-password",
+        element: <SetNewPassword />,
       },
     ],
   },

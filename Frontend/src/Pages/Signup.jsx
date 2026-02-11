@@ -178,7 +178,7 @@ const Signup = () => {
                 {loading ? (
                   <LoginLoader className="h-auto w-12" />
                 ) : (
-                  <p>Login</p>
+                  <p>Sign up</p>
                 )}
               </button>
               <div className="flex justify-center font-normal gap-1 -mt-2 text-sm lg:text-base">

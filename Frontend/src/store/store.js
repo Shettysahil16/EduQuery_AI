@@ -4,6 +4,7 @@ import conversationReducer from './conversationSlice.jsx'
 import messagesReducer from './messageSlice.jsx'
 import allUsersReducer from './allUsersSlice.jsx'
 import newConversationReducer from './newConversation.jsx'
+import  forgetUserDetailsReducer  from './forgetPasswordUserDetails.jsx';
 
 export const store =  configureStore({
     reducer : {
@@ -11,6 +12,7 @@ export const store =  configureStore({
         conversation : conversationReducer,
         messages : messagesReducer,
         allSortedUsers : allUsersReducer,
-        newConversation : newConversationReducer
+        newConversation : newConversationReducer,
+        forgetUserDetails : forgetUserDetailsReducer
     }
 })

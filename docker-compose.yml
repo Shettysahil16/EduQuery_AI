@@ -1,0 +1,27 @@
+services:
+  backend:
+    build : ./Backend 
+    container_name: eduquery-backend
+    ports :
+      - "5050:5050"
+    env_file:
+      - ./Backend/.env
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./Frontend
+    container_name: eduquery-frontend
+    ports:
+      - "3000:80"
+
+  mongo:
+    image : mongo:7
+    container_name: eduquery-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

@@ -1,27 +1,46 @@
 services:
+
+  mongo:
+    image : mongo
+    container_name: eduquery-mongo
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - eduquery-network
+
+
   backend:
     build : ./Backend 
     container_name: eduquery-backend
-    ports :
-      - "5050:5050"
     env_file:
       - ./Backend/.env
     depends_on:
       - mongo
+    networks:
+      - eduquery-network
 
   frontend:
     build: ./Frontend
     container_name: eduquery-frontend
-    ports:
-      - "3000:80"
+    networks:
+      - eduquery-network
 
-  mongo:
-    image : mongo:7
-    container_name: eduquery-mongo
+  nginx:
+    image: nginx:alpine
+    container_name: eduquery-nginx
     ports:
-      - "27017:27017"
+      - '80:80'
     volumes:
-      - mongo_data:/data/db
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - eduquery-network
 
 volumes:
   mongo_data:
+
+networks:
+  eduquery-network:
+    driver: bridge

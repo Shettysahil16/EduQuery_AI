@@ -22,6 +22,8 @@ services:
   frontend:
     build: ./Frontend
     container_name: eduquery-frontend
+    env_file:
+      - ./Frontend/.env
     networks:
       - eduquery-network
 

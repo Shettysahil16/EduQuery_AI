@@ -1,4 +1,4 @@
-const backendDomain = "http://localhost:5050"
+const backendDomain = `${import.meta.env.VITE_BACKEND_URI}`
 
 const summaryApi = {
     signUp : {

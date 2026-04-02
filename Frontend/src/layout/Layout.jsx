@@ -12,6 +12,7 @@ import Loader from "../Components/Loaders/Loader";
 
 export default function Layout() {
   const user = useSelector(selectUser);
+  
 
   const [panelDetail, setPanelDetail] = useState(null);
 

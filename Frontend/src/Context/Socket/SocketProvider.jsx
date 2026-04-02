@@ -19,7 +19,7 @@ export const SocketProvider = ({ children }) => {
     
     if (!loggedUser) return;
 
-    const newSocket = io("http://localhost:5050", {
+    const newSocket = io(import.meta.env.VITE_SOCKET_URI, {
       query: {
         userId: loggedUser._id,
       },

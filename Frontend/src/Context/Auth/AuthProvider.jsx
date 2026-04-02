@@ -9,6 +9,7 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  
 
   const fetchAuthUserDetails = useCallback( async () => {
     try {

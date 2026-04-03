@@ -29,7 +29,7 @@ const Experts = () => {
       const data = await response.json();
       setExperts(data);
       setLoading(false);
-      console.log("experts", experts);
+      //console.log("experts", experts);
       
       } catch (error) {
         console.log("error in fetching tutors", error);
@@ -50,6 +50,7 @@ const Experts = () => {
 
 
     
+console.log("filteredExperts", filteredExperts);
 
   return (
     <div className="bg-Septenary h-full text-white relative">

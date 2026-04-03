@@ -9,6 +9,7 @@ export const tutors = {
     model: "gemini-3-flash-preview",
     avatar : "general",
     historyName : 'General',
+    myself : 'general'
   },
   ai_001: {
     tutorId: "ai_001",
@@ -22,6 +23,7 @@ export const tutors = {
     avatar: "ai",
     url: "artificial-intelligence",
     historyName : 'AI',
+    myself : "I will help you understand artificial intelligence concepts like machine learning, neural networks, and deep learning. I will guide you with clear explanations, examples, and practical insights."
   },
 
   math_001: {
@@ -35,6 +37,7 @@ export const tutors = {
     avatar: "math",
     url: "mathematics",
     historyName : 'Maths',
+    myself : "I will help you understand mathematical concepts step-by-step, from basic algebra to advanced calculus. I will guide you through problems and explain solutions clearly."
   },
 
   history_001: {
@@ -48,6 +51,7 @@ export const tutors = {
     avatar: "history",
     url: "history",
     historyName : 'History',
+    myself : "I will help you understand important historical events, civilizations, and timelines. I will explain history in a clear and structured way."
   },
 
   physics_001: {
@@ -61,6 +65,7 @@ export const tutors = {
     avatar: "physics",
     url: "physics",
     historyName : 'Physics',
+    myself : "I will explain physics concepts in a simple and practical way, from mechanics to modern physics. I will help you solve numericals and understand formulas easily."
   },
 
   biology_001: {
@@ -74,6 +79,7 @@ export const tutors = {
     avatar: "biology",
     url: "biology",
     historyName : 'Biology',
+    myself : "I will explain biological concepts like human anatomy, genetics, and ecosystems in an easy way. I will help you understand complex life science topics step-by-step."
   },
 
   chemistry_001: {
@@ -87,6 +93,7 @@ export const tutors = {
     avatar: "chemistry",
     url: "chemistry",
     historyName : 'Chemistry',
+    myself : "I will break down chemistry reactions, equations, and theories into simple explanations. I will help you understand organic, inorganic, and physical chemistry concepts clearly."
   },
 
   engineering_001: {
@@ -100,6 +107,7 @@ export const tutors = {
     avatar: "engineering",
     url: "engineering",
     historyName : 'Engineering',
+    myself : "I will help you solve engineering problems and understand technical concepts across different engineering fields. I will explain formulas, theories, and applications step-by-step."
   },
 
   literature_001: {
@@ -113,5 +121,6 @@ export const tutors = {
     avatar: "literature",
     url: "literature",
     historyName : 'Literature',
+    myself : "I will help you explore literature, analyze texts, and understand themes, authors, and writing styles. I will guide you in improving interpretation and critical thinking skills."
   },
 };

@@ -10,6 +10,7 @@ export const getTutorsController = (req, res) => {
       avatar: tutor.avatar || null,
       url : tutor.url,
       historyName : tutor.historyName,
+      description : tutor.myself,
     }));
 
     res.status(200).json(tutorList);

@@ -4,6 +4,8 @@ import { expertImages } from "../../assets/experts";
 
 const ExpertCard = ({tutor}) => {
   console.log("tutor", tutor);
+  //console.log("expertImages", expertImages);
+  
   
   
   return (
@@ -16,7 +18,7 @@ const ExpertCard = ({tutor}) => {
         </div>
         <div className="w-full flex flex-col gap-2 px-2 mt-10">
           <div className="text-xl md:text-lg lg:text-xl xl:text-2xl font-medium capitalize">{tutor.name}</div>
-          <div className="px-2">Description :- Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, minima?</div>
+          <div className="px-2 text-sm font-base">{tutor.description}</div>
         </div>
       </div>
     </Link>
